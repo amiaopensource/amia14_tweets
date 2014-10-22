@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>twarc Directed Graph of Retweets</title>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <style type="text/css">
+
+div#sidebar {
+	position:fixed;
+	top:0px;
+	left:0px;
+	width: 250px;
+	height:400px;
+	overflow:scroll;
+
+	border: 1px solid black;
+	background: #eee;
+	padding: 5px;
+	}
+
+div#sidebar_lists {
+	font-size: 75%;
+}
+
+div.sidebar_list {
+	width: 50%;
+	float:left;
+}
+
+path.link {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+marker#plain {
+  fill: #666;
+}
+
+marker#in {
+  fill: #44f;
+}
+
+marker#out {
+  fill: #0f0;
+}
+
+path.link.hlOut {
+	stroke: #0f0;
+	stroke-width: 2px;
+}
+path.link.hlIn {
+	stroke: #44f;
+	stroke-width: 2px;
+}
+
+
+circle {
+  fill: #eee;
+  stroke: #333;
+  stroke-width: 1.5px;
+}
+circle.hl {
+	stroke: #f00;
+	fill: #f00;
+}
+circle.hlIn {
+	stroke: #0f0;
+	fill: #cfc;
+}
+circle.hlOut {
+	stroke: #66f;
+	fill: #ccf;
+}
+circle.hlout.hlIn {
+	stroke: #66f;
+	fill: #cfc;
+}
+
+text {
+  font: 10px sans-serif;
+  pointer-events: none;
+}
+
+text.shad {
+  stroke: #fff;
+  stroke-width: 3px;
+  stroke-opacity: .8;
+}
+g.hl text.shad {
+	stroke: #fcc;
+  	stroke-opacity: 1;
+}
+g.hlIn text.shad {
+	stroke: #cfc;
+  	stroke-opacity: 1;
+}
+g.hlOut text.shad {
+	stroke: #ddf;
+  	stroke-opacity: 1;
+}
+
+
+ul { margin: 0; padding: 0; list-style-type: none;}
+    </style>
+  </head>
+  <body>
+  
+    <div id="sidebar">
+    	<div id="sidebar_selectdiv">
+    	</div>
+    	<h2 id="sidebar_user"></h2>
+    	<div id="sidebar_lists">
+	    	<div class="sidebar_list" id="sidebar_inlist"></div>
+    		<div class="sidebar_list" id="sidebar_outlist"></div>
+    	</div
+    </div>
+    
+    
+
+  
+    <script type="text/javascript">
+
+	var mode = "retweets";
+	
+	var links = [{"source": 273, "target": 266, "value": 1}, {"source": 65, "target": 0, "value": 2}, {"source": 221, "target": 0, "value": 1}, {"source": 219, "target": 267, "value": 1}, {"source": 60, "target": 268, "value": 1}, {"source": 2, "target": 170, "value": 1}, {"source": 289, "target": 269, "value": 1}, {"source": 21, "target": 79, "value": 1}, {"source": 236, "target": 216, "value": 2}, {"source": 289, "target": 80, "value": 1}, {"source": 162, "target": 80, "value": 1}, {"source": 300, "target": 80, "value": 1}, {"source": 260, "target": 80, "value": 1}, {"source": 36, "target": 80, "value": 1}, {"source": 222, "target": 80, "value": 1}, {"source": 60, "target": 80, "value": 1}, {"source": 300, "target": 271, "value": 1}, {"source": 197, "target": 271, "value": 1}, {"source": 260, "target": 102, "value": 1}, {"source": 87, "target": 102, "value": 1}, {"source": 13, "target": 102, "value": 1}, {"source": 25, "target": 82, "value": 1}, {"source": 185, "target": 104, "value": 1}, {"source": 310, "target": 173, "value": 1}, {"source": 69, "target": 273, "value": 1}, {"source": 121, "target": 273, "value": 2}, {"source": 262, "target": 273, "value": 1}, {"source": 195, "target": 273, "value": 4}, {"source": 287, "target": 273, "value": 2}, {"source": 21, "target": 273, "value": 1}, {"source": 14, "target": 273, "value": 1}, {"source": 52, "target": 273, "value": 1}, {"source": 212, "target": 273, "value": 1}, {"source": 296, "target": 273, "value": 1}, {"source": 237, "target": 273, "value": 2}, {"source": 36, "target": 273, "value": 1}, {"source": 250, "target": 273, "value": 2}, {"source": 291, "target": 273, "value": 2}, {"source": 37, "target": 273, "value": 1}, {"source": 169, "target": 11, "value": 1}, {"source": 69, "target": 312, "value": 1}, {"source": 291, "target": 312, "value": 6}, {"source": 36, "target": 312, "value": 1}, {"source": 296, "target": 312, "value": 1}, {"source": 273, "target": 312, "value": 2}, {"source": 219, "target": 274, "value": 1}, {"source": 195, "target": 172, "value": 1}, {"source": 291, "target": 276, "value": 1}, {"source": 300, "target": 297, "value": 1}, {"source": 291, "target": 174, "value": 1}, {"source": 291, "target": 325, "value": 1}, {"source": 291, "target": 277, "value": 3}, {"source": 251, "target": 175, "value": 1}, {"source": 2, "target": 176, "value": 1}, {"source": 87, "target": 278, "value": 1}, {"source": 291, "target": 177, "value": 1}, {"source": 148, "target": 5, "value": 1}, {"source": 291, "target": 178, "value": 1}, {"source": 251, "target": 179, "value": 1}, {"source": 69, "target": 86, "value": 3}, {"source": 222, "target": 86, "value": 1}, {"source": 139, "target": 86, "value": 1}, {"source": 14, "target": 86, "value": 2}, {"source": 245, "target": 86, "value": 3}, {"source": 169, "target": 86, "value": 2}, {"source": 221, "target": 86, "value": 1}, {"source": 215, "target": 86, "value": 1}, {"source": 195, "target": 196, "value": 1}, {"source": 69, "target": 7, "value": 2}, {"source": 70, "target": 7, "value": 1}, {"source": 121, "target": 7, "value": 1}, {"source": 273, "target": 7, "value": 1}, {"source": 222, "target": 7, "value": 2}, {"source": 60, "target": 7, "value": 1}, {"source": 69, "target": 280, "value": 1}, {"source": 296, "target": 280, "value": 1}, {"source": 291, "target": 280, "value": 1}, {"source": 36, "target": 8, "value": 1}, {"source": 237, "target": 281, "value": 1}, {"source": 236, "target": 281, "value": 1}, {"source": 121, "target": 281, "value": 1}, {"source": 300, "target": 87, "value": 1}, {"source": 296, "target": 87, "value": 1}, {"source": 287, "target": 285, "value": 1}, {"source": 250, "target": 9, "value": 1}, {"source": 195, "target": 88, "value": 1}, {"source": 287, "target": 181, "value": 1}, {"source": 300, "target": 90, "value": 1}, {"source": 291, "target": 90, "value": 1}, {"source": 121, "target": 90, "value": 1}, {"source": 151, "target": 90, "value": 1}, {"source": 310, "target": 339, "value": 1}, {"source": 291, "target": 182, "value": 1}, {"source": 299, "target": 91, "value": 1}, {"source": 36, "target": 282, "value": 1}, {"source": 299, "target": 92, "value": 1}, {"source": 54, "target": 21, "value": 1}, {"source": 52, "target": 10, "value": 1}, {"source": 97, "target": 10, "value": 1}, {"source": 233, "target": 184, "value": 1}, {"source": 260, "target": 184, "value": 2}, {"source": 291, "target": 184, "value": 1}, {"source": 289, "target": 184, "value": 1}, {"source": 291, "target": 93, "value": 1}, {"source": 356, "target": 185, "value": 1}, {"source": 273, "target": 94, "value": 1}, {"source": 70, "target": 203, "value": 1}, {"source": 69, "target": 95, "value": 1}, {"source": 291, "target": 95, "value": 1}, {"source": 26, "target": 286, "value": 1}, {"source": 69, "target": 40, "value": 1}, {"source": 121, "target": 40, "value": 1}, {"source": 222, "target": 40, "value": 1}, {"source": 151, "target": 40, "value": 1}, {"source": 233, "target": 67, "value": 1}, {"source": 45, "target": 186, "value": 1}, {"source": 192, "target": 187, "value": 1}, {"source": 69, "target": 96, "value": 4}, {"source": 262, "target": 96, "value": 1}, {"source": 287, "target": 96, "value": 1}, {"source": 291, "target": 96, "value": 1}, {"source": 14, "target": 96, "value": 1}, {"source": 300, "target": 96, "value": 1}, {"source": 296, "target": 96, "value": 1}, {"source": 100, "target": 96, "value": 1}, {"source": 273, "target": 96, "value": 2}, {"source": 188, "target": 96, "value": 2}, {"source": 222, "target": 96, "value": 1}, {"source": 25, "target": 96, "value": 1}, {"source": 243, "target": 96, "value": 1}, {"source": 69, "target": 13, "value": 1}, {"source": 233, "target": 13, "value": 1}, {"source": 54, "target": 13, "value": 2}, {"source": 262, "target": 13, "value": 1}, {"source": 195, "target": 13, "value": 3}, {"source": 354, "target": 13, "value": 1}, {"source": 21, "target": 13, "value": 1}, {"source": 14, "target": 13, "value": 3}, {"source": 97, "target": 13, "value": 2}, {"source": 300, "target": 13, "value": 1}, {"source": 52, "target": 13, "value": 1}, {"source": 273, "target": 13, "value": 2}, {"source": 348, "target": 13, "value": 1}, {"source": 221, "target": 13, "value": 1}, {"source": 250, "target": 13, "value": 2}, {"source": 291, "target": 13, "value": 3}, {"source": 294, "target": 13, "value": 2}, {"source": 37, "target": 13, "value": 1}, {"source": 161, "target": 164, "value": 1}, {"source": 121, "target": 14, "value": 1}, {"source": 291, "target": 14, "value": 1}, {"source": 310, "target": 14, "value": 1}, {"source": 58, "target": 14, "value": 1}, {"source": 260, "target": 14, "value": 1}, {"source": 25, "target": 14, "value": 1}, {"source": 45, "target": 97, "value": 2}, {"source": 48, "target": 97, "value": 1}, {"source": 26, "target": 97, "value": 1}, {"source": 354, "target": 97, "value": 1}, {"source": 250, "target": 97, "value": 2}, {"source": 14, "target": 97, "value": 1}, {"source": 296, "target": 97, "value": 2}, {"source": 60, "target": 97, "value": 1}, {"source": 36, "target": 97, "value": 1}, {"source": 222, "target": 97, "value": 1}, {"source": 25, "target": 97, "value": 1}, {"source": 69, "target": 296, "value": 1}, {"source": 45, "target": 296, "value": 2}, {"source": 217, "target": 296, "value": 1}, {"source": 96, "target": 296, "value": 1}, {"source": 356, "target": 296, "value": 1}, {"source": 11, "target": 296, "value": 3}, {"source": 87, "target": 296, "value": 1}, {"source": 287, "target": 296, "value": 1}, {"source": 60, "target": 296, "value": 1}, {"source": 291, "target": 42, "value": 1}, {"source": 324, "target": 42, "value": 1}, {"source": 69, "target": 100, "value": 2}, {"source": 45, "target": 100, "value": 2}, {"source": 215, "target": 100, "value": 1}, {"source": 151, "target": 100, "value": 1}, {"source": 300, "target": 100, "value": 1}, {"source": 237, "target": 100, "value": 1}, {"source": 260, "target": 100, "value": 1}, {"source": 36, "target": 100, "value": 3}, {"source": 222, "target": 100, "value": 2}, {"source": 193, "target": 100, "value": 1}, {"source": 60, "target": 100, "value": 1}, {"source": 112, "target": 337, "value": 1}, {"source": 69, "target": 188, "value": 4}, {"source": 300, "target": 188, "value": 1}, {"source": 289, "target": 188, "value": 1}, {"source": 13, "target": 188, "value": 1}, {"source": 296, "target": 188, "value": 1}, {"source": 233, "target": 188, "value": 5}, {"source": 239, "target": 188, "value": 1}, {"source": 308, "target": 188, "value": 1}, {"source": 221, "target": 188, "value": 1}, {"source": 236, "target": 188, "value": 2}, {"source": 287, "target": 188, "value": 2}, {"source": 291, "target": 188, "value": 1}, {"source": 25, "target": 188, "value": 1}, {"source": 300, "target": 189, "value": 1}, {"source": 251, "target": 249, "value": 1}, {"source": 289, "target": 3, "value": 1}, {"source": 273, "target": 16, "value": 1}, {"source": 299, "target": 83, "value": 1}, {"source": 324, "target": 17, "value": 1}, {"source": 64, "target": 252, "value": 1}, {"source": 5, "target": 19, "value": 1}, {"source": 45, "target": 289, "value": 1}, {"source": 121, "target": 289, "value": 1}, {"source": 354, "target": 289, "value": 1}, {"source": 291, "target": 289, "value": 1}, {"source": 47, "target": 289, "value": 1}, {"source": 188, "target": 289, "value": 1}, {"source": 36, "target": 289, "value": 1}, {"source": 239, "target": 20, "value": 1}, {"source": 112, "target": 350, "value": 1}, {"source": 36, "target": 350, "value": 1}, {"source": 69, "target": 298, "value": 1}, {"source": 273, "target": 298, "value": 1}, {"source": 69, "target": 291, "value": 1}, {"source": 45, "target": 291, "value": 1}, {"source": 21, "target": 291, "value": 1}, {"source": 296, "target": 291, "value": 1}, {"source": 273, "target": 291, "value": 2}, {"source": 36, "target": 291, "value": 1}, {"source": 287, "target": 291, "value": 1}, {"source": 26, "target": 171, "value": 1}, {"source": 45, "target": 290, "value": 1}, {"source": 195, "target": 192, "value": 2}, {"source": 287, "target": 23, "value": 1}, {"source": 291, "target": 53, "value": 1}, {"source": 251, "target": 30, "value": 1}, {"source": 69, "target": 292, "value": 1}, {"source": 239, "target": 105, "value": 1}, {"source": 251, "target": 59, "value": 1}, {"source": 324, "target": 24, "value": 1}, {"source": 221, "target": 193, "value": 1}, {"source": 60, "target": 193, "value": 1}, {"source": 96, "target": 25, "value": 2}, {"source": 69, "target": 25, "value": 1}, {"source": 36, "target": 25, "value": 1}, {"source": 60, "target": 25, "value": 1}, {"source": 121, "target": 25, "value": 2}, {"source": 188, "target": 345, "value": 1}, {"source": 296, "target": 345, "value": 1}, {"source": 262, "target": 345, "value": 1}, {"source": 273, "target": 345, "value": 1}, {"source": 291, "target": 107, "value": 1}, {"source": 48, "target": 107, "value": 1}, {"source": 197, "target": 107, "value": 2}, {"source": 11, "target": 194, "value": 1}, {"source": 291, "target": 194, "value": 1}, {"source": 287, "target": 194, "value": 1}, {"source": 291, "target": 108, "value": 1}, {"source": 233, "target": 195, "value": 1}, {"source": 64, "target": 195, "value": 1}, {"source": 287, "target": 195, "value": 3}, {"source": 197, "target": 195, "value": 1}, {"source": 14, "target": 195, "value": 1}, {"source": 273, "target": 295, "value": 1}, {"source": 273, "target": 132, "value": 1}, {"source": 197, "target": 198, "value": 1}, {"source": 273, "target": 98, "value": 1}, {"source": 14, "target": 109, "value": 1}, {"source": 273, "target": 110, "value": 2}, {"source": 195, "target": 99, "value": 1}, {"source": 69, "target": 206, "value": 1}, {"source": 214, "target": 329, "value": 1}, {"source": 6, "target": 28, "value": 1}, {"source": 11, "target": 113, "value": 1}, {"source": 233, "target": 114, "value": 1}, {"source": 356, "target": 114, "value": 1}, {"source": 21, "target": 115, "value": 1}, {"source": 222, "target": 29, "value": 1}, {"source": 221, "target": 255, "value": 1}, {"source": 60, "target": 15, "value": 1}, {"source": 69, "target": 199, "value": 1}, {"source": 45, "target": 199, "value": 3}, {"source": 121, "target": 199, "value": 1}, {"source": 64, "target": 199, "value": 1}, {"source": 233, "target": 199, "value": 1}, {"source": 188, "target": 199, "value": 1}, {"source": 291, "target": 200, "value": 1}, {"source": 287, "target": 200, "value": 1}, {"source": 144, "target": 200, "value": 1}, {"source": 354, "target": 117, "value": 1}, {"source": 233, "target": 117, "value": 1}, {"source": 97, "target": 31, "value": 1}, {"source": 36, "target": 32, "value": 1}, {"source": 291, "target": 118, "value": 1}, {"source": 121, "target": 118, "value": 1}, {"source": 14, "target": 118, "value": 1}, {"source": 87, "target": 118, "value": 1}, {"source": 185, "target": 148, "value": 2}, {"source": 19, "target": 302, "value": 1}, {"source": 54, "target": 180, "value": 1}, {"source": 129, "target": 334, "value": 1}, {"source": 287, "target": 303, "value": 1}, {"source": 291, "target": 33, "value": 1}, {"source": 14, "target": 33, "value": 1}, {"source": 197, "target": 33, "value": 1}, {"source": 273, "target": 205, "value": 1}, {"source": 296, "target": 4, "value": 1}, {"source": 291, "target": 4, "value": 1}, {"source": 289, "target": 287, "value": 1}, {"source": 191, "target": 287, "value": 1}, {"source": 291, "target": 287, "value": 1}, {"source": 151, "target": 287, "value": 1}, {"source": 82, "target": 287, "value": 1}, {"source": 273, "target": 287, "value": 2}, {"source": 221, "target": 287, "value": 1}, {"source": 60, "target": 287, "value": 1}, {"source": 195, "target": 287, "value": 9}, {"source": 296, "target": 287, "value": 2}, {"source": 25, "target": 287, "value": 1}, {"source": 250, "target": 287, "value": 1}, {"source": 138, "target": 287, "value": 1}, {"source": 69, "target": 287, "value": 1}, {"source": 233, "target": 287, "value": 6}, {"source": 236, "target": 287, "value": 2}, {"source": 300, "target": 287, "value": 2}, {"source": 354, "target": 287, "value": 2}, {"source": 14, "target": 287, "value": 3}, {"source": 97, "target": 287, "value": 1}, {"source": 308, "target": 287, "value": 1}, {"source": 239, "target": 287, "value": 1}, {"source": 310, "target": 287, "value": 1}, {"source": 188, "target": 287, "value": 2}, {"source": 36, "target": 287, "value": 2}, {"source": 215, "target": 287, "value": 1}, {"source": 233, "target": 34, "value": 1}, {"source": 287, "target": 34, "value": 1}, {"source": 25, "target": 34, "value": 1}, {"source": 273, "target": 34, "value": 1}, {"source": 195, "target": 304, "value": 1}, {"source": 69, "target": 121, "value": 1}, {"source": 45, "target": 121, "value": 5}, {"source": 139, "target": 121, "value": 1}, {"source": 14, "target": 121, "value": 4}, {"source": 300, "target": 121, "value": 1}, {"source": 100, "target": 121, "value": 1}, {"source": 60, "target": 121, "value": 1}, {"source": 273, "target": 121, "value": 1}, {"source": 260, "target": 121, "value": 2}, {"source": 221, "target": 121, "value": 2}, {"source": 36, "target": 121, "value": 2}, {"source": 222, "target": 121, "value": 1}, {"source": 25, "target": 121, "value": 1}, {"source": 188, "target": 208, "value": 2}, {"source": 273, "target": 208, "value": 1}, {"source": 45, "target": 305, "value": 1}, {"source": 273, "target": 305, "value": 2}, {"source": 291, "target": 256, "value": 2}, {"source": 262, "target": 306, "value": 1}, {"source": 250, "target": 209, "value": 1}, {"source": 64, "target": 209, "value": 1}, {"source": 158, "target": 207, "value": 1}, {"source": 112, "target": 301, "value": 1}, {"source": 36, "target": 211, "value": 1}, {"source": 5, "target": 122, "value": 1}, {"source": 69, "target": 308, "value": 2}, {"source": 36, "target": 308, "value": 1}, {"source": 260, "target": 308, "value": 1}, {"source": 121, "target": 308, "value": 4}, {"source": 195, "target": 308, "value": 2}, {"source": 354, "target": 308, "value": 3}, {"source": 291, "target": 308, "value": 2}, {"source": 191, "target": 308, "value": 1}, {"source": 14, "target": 308, "value": 2}, {"source": 151, "target": 308, "value": 3}, {"source": 233, "target": 308, "value": 1}, {"source": 348, "target": 308, "value": 1}, {"source": 25, "target": 308, "value": 1}, {"source": 273, "target": 308, "value": 2}, {"source": 33, "target": 308, "value": 1}, {"source": 58, "target": 308, "value": 1}, {"source": 236, "target": 308, "value": 1}, {"source": 287, "target": 308, "value": 7}, {"source": 294, "target": 308, "value": 1}, {"source": 138, "target": 308, "value": 1}, {"source": 195, "target": 317, "value": 1}, {"source": 233, "target": 212, "value": 1}, {"source": 54, "target": 212, "value": 1}, {"source": 291, "target": 123, "value": 1}, {"source": 310, "target": 213, "value": 1}, {"source": 237, "target": 72, "value": 1}, {"source": 5, "target": 126, "value": 1}, {"source": 14, "target": 202, "value": 1}, {"source": 291, "target": 36, "value": 2}, {"source": 151, "target": 36, "value": 2}, {"source": 273, "target": 36, "value": 3}, {"source": 60, "target": 36, "value": 4}, {"source": 195, "target": 36, "value": 1}, {"source": 287, "target": 36, "value": 1}, {"source": 52, "target": 36, "value": 4}, {"source": 65, "target": 36, "value": 1}, {"source": 25, "target": 36, "value": 5}, {"source": 87, "target": 36, "value": 1}, {"source": 250, "target": 36, "value": 2}, {"source": 69, "target": 36, "value": 8}, {"source": 45, "target": 36, "value": 1}, {"source": 139, "target": 36, "value": 5}, {"source": 300, "target": 36, "value": 2}, {"source": 11, "target": 36, "value": 1}, {"source": 260, "target": 36, "value": 4}, {"source": 222, "target": 36, "value": 1}, {"source": 34, "target": 36, "value": 1}, {"source": 121, "target": 36, "value": 1}, {"source": 76, "target": 36, "value": 1}, {"source": 354, "target": 36, "value": 2}, {"source": 14, "target": 36, "value": 1}, {"source": 97, "target": 36, "value": 1}, {"source": 296, "target": 36, "value": 1}, {"source": 100, "target": 36, "value": 4}, {"source": 310, "target": 36, "value": 8}, {"source": 188, "target": 36, "value": 2}, {"source": 69, "target": 215, "value": 1}, {"source": 70, "target": 215, "value": 1}, {"source": 260, "target": 215, "value": 1}, {"source": 36, "target": 215, "value": 1}, {"source": 139, "target": 215, "value": 4}, {"source": 273, "target": 215, "value": 1}, {"source": 14, "target": 215, "value": 4}, {"source": 356, "target": 215, "value": 2}, {"source": 52, "target": 215, "value": 1}, {"source": 153, "target": 215, "value": 2}, {"source": 310, "target": 215, "value": 2}, {"source": 245, "target": 215, "value": 2}, {"source": 188, "target": 215, "value": 1}, {"source": 221, "target": 215, "value": 2}, {"source": 346, "target": 215, "value": 1}, {"source": 222, "target": 215, "value": 1}, {"source": 37, "target": 215, "value": 1}, {"source": 190, "target": 311, "value": 1}, {"source": 195, "target": 311, "value": 1}, {"source": 354, "target": 311, "value": 1}, {"source": 14, "target": 311, "value": 1}, {"source": 273, "target": 311, "value": 1}, {"source": 188, "target": 311, "value": 1}, {"source": 299, "target": 311, "value": 1}, {"source": 69, "target": 37, "value": 1}, {"source": 291, "target": 37, "value": 1}, {"source": 219, "target": 37, "value": 1}, {"source": 296, "target": 37, "value": 1}, {"source": 82, "target": 37, "value": 1}, {"source": 100, "target": 37, "value": 1}, {"source": 273, "target": 37, "value": 2}, {"source": 294, "target": 37, "value": 1}, {"source": 291, "target": 190, "value": 1}, {"source": 54, "target": 190, "value": 1}, {"source": 197, "target": 190, "value": 1}, {"source": 45, "target": 38, "value": 1}, {"source": 45, "target": 26, "value": 1}, {"source": 291, "target": 26, "value": 1}, {"source": 197, "target": 26, "value": 1}, {"source": 291, "target": 125, "value": 1}, {"source": 162, "target": 351, "value": 1}, {"source": 63, "target": 351, "value": 1}, {"source": 273, "target": 224, "value": 1}, {"source": 291, "target": 103, "value": 1}, {"source": 291, "target": 204, "value": 1}, {"source": 195, "target": 39, "value": 1}, {"source": 2, "target": 85, "value": 1}, {"source": 188, "target": 1, "value": 1}, {"source": 219, "target": 130, "value": 1}, {"source": 188, "target": 130, "value": 1}, {"source": 21, "target": 54, "value": 1}, {"source": 195, "target": 288, "value": 1}, {"source": 36, "target": 313, "value": 1}, {"source": 251, "target": 314, "value": 1}, {"source": 184, "target": 131, "value": 1}, {"source": 308, "target": 221, "value": 1}, {"source": 245, "target": 221, "value": 1}, {"source": 310, "target": 221, "value": 1}, {"source": 45, "target": 315, "value": 1}, {"source": 287, "target": 315, "value": 1}, {"source": 251, "target": 22, "value": 1}, {"source": 251, "target": 335, "value": 1}, {"source": 291, "target": 316, "value": 1}, {"source": 70, "target": 119, "value": 1}, {"source": 287, "target": 43, "value": 1}, {"source": 296, "target": 44, "value": 1}, {"source": 358, "target": 44, "value": 1}, {"source": 60, "target": 44, "value": 1}, {"source": 121, "target": 44, "value": 1}, {"source": 69, "target": 222, "value": 3}, {"source": 121, "target": 222, "value": 1}, {"source": 243, "target": 222, "value": 1}, {"source": 291, "target": 222, "value": 2}, {"source": 273, "target": 222, "value": 1}, {"source": 14, "target": 222, "value": 2}, {"source": 151, "target": 222, "value": 1}, {"source": 300, "target": 222, "value": 1}, {"source": 271, "target": 222, "value": 1}, {"source": 52, "target": 222, "value": 2}, {"source": 49, "target": 222, "value": 1}, {"source": 310, "target": 222, "value": 1}, {"source": 33, "target": 222, "value": 1}, {"source": 215, "target": 222, "value": 1}, {"source": 356, "target": 222, "value": 1}, {"source": 291, "target": 223, "value": 1}, {"source": 14, "target": 223, "value": 1}, {"source": 162, "target": 223, "value": 1}, {"source": 63, "target": 223, "value": 1}, {"source": 287, "target": 191, "value": 1}, {"source": 45, "target": 133, "value": 1}, {"source": 120, "target": 133, "value": 1}, {"source": 14, "target": 133, "value": 1}, {"source": 219, "target": 318, "value": 1}, {"source": 188, "target": 318, "value": 1}, {"source": 5, "target": 225, "value": 1}, {"source": 19, "target": 225, "value": 1}, {"source": 291, "target": 62, "value": 1}, {"source": 221, "target": 319, "value": 1}, {"source": 291, "target": 134, "value": 1}, {"source": 69, "target": 226, "value": 1}, {"source": 239, "target": 135, "value": 1}, {"source": 236, "target": 135, "value": 1}, {"source": 47, "target": 135, "value": 1}, {"source": 273, "target": 135, "value": 3}, {"source": 300, "target": 136, "value": 1}, {"source": 300, "target": 137, "value": 1}, {"source": 87, "target": 137, "value": 1}, {"source": 48, "target": 137, "value": 1}, {"source": 291, "target": 228, "value": 1}, {"source": 291, "target": 229, "value": 1}, {"source": 310, "target": 229, "value": 1}, {"source": 273, "target": 229, "value": 1}, {"source": 250, "target": 229, "value": 1}, {"source": 139, "target": 229, "value": 1}, {"source": 25, "target": 229, "value": 1}, {"source": 291, "target": 138, "value": 1}, {"source": 69, "target": 45, "value": 1}, {"source": 121, "target": 45, "value": 1}, {"source": 222, "target": 45, "value": 2}, {"source": 291, "target": 45, "value": 2}, {"source": 273, "target": 45, "value": 2}, {"source": 87, "target": 45, "value": 2}, {"source": 36, "target": 45, "value": 1}, {"source": 250, "target": 45, "value": 1}, {"source": 112, "target": 321, "value": 1}, {"source": 45, "target": 321, "value": 1}, {"source": 273, "target": 231, "value": 1}, {"source": 291, "target": 46, "value": 1}, {"source": 273, "target": 232, "value": 1}, {"source": 69, "target": 139, "value": 1}, {"source": 121, "target": 139, "value": 1}, {"source": 291, "target": 139, "value": 2}, {"source": 239, "target": 139, "value": 1}, {"source": 14, "target": 139, "value": 2}, {"source": 300, "target": 139, "value": 3}, {"source": 52, "target": 139, "value": 2}, {"source": 153, "target": 139, "value": 1}, {"source": 260, "target": 139, "value": 1}, {"source": 221, "target": 139, "value": 1}, {"source": 36, "target": 139, "value": 2}, {"source": 222, "target": 139, "value": 2}, {"source": 291, "target": 47, "value": 1}, {"source": 273, "target": 47, "value": 1}, {"source": 190, "target": 322, "value": 1}, {"source": 69, "target": 218, "value": 2}, {"source": 100, "target": 218, "value": 1}, {"source": 69, "target": 245, "value": 4}, {"source": 121, "target": 245, "value": 1}, {"source": 139, "target": 245, "value": 1}, {"source": 52, "target": 245, "value": 1}, {"source": 100, "target": 245, "value": 2}, {"source": 221, "target": 245, "value": 1}, {"source": 36, "target": 245, "value": 1}, {"source": 222, "target": 245, "value": 1}, {"source": 37, "target": 245, "value": 1}, {"source": 190, "target": 233, "value": 3}, {"source": 289, "target": 233, "value": 8}, {"source": 264, "target": 233, "value": 1}, {"source": 291, "target": 233, "value": 7}, {"source": 153, "target": 233, "value": 1}, {"source": 129, "target": 233, "value": 1}, {"source": 151, "target": 233, "value": 1}, {"source": 219, "target": 233, "value": 1}, {"source": 57, "target": 233, "value": 1}, {"source": 152, "target": 233, "value": 1}, {"source": 273, "target": 233, "value": 18}, {"source": 11, "target": 233, "value": 2}, {"source": 58, "target": 233, "value": 2}, {"source": 193, "target": 233, "value": 1}, {"source": 25, "target": 233, "value": 2}, {"source": 260, "target": 233, "value": 2}, {"source": 63, "target": 233, "value": 1}, {"source": 195, "target": 233, "value": 21}, {"source": 222, "target": 233, "value": 2}, {"source": 239, "target": 233, "value": 2}, {"source": 60, "target": 233, "value": 2}, {"source": 250, "target": 233, "value": 1}, {"source": 294, "target": 233, "value": 3}, {"source": 299, "target": 233, "value": 1}, {"source": 69, "target": 233, "value": 5}, {"source": 45, "target": 233, "value": 2}, {"source": 139, "target": 233, "value": 3}, {"source": 356, "target": 233, "value": 4}, {"source": 116, "target": 233, "value": 3}, {"source": 300, "target": 233, "value": 5}, {"source": 118, "target": 233, "value": 1}, {"source": 48, "target": 233, "value": 1}, {"source": 348, "target": 233, "value": 1}, {"source": 324, "target": 233, "value": 1}, {"source": 184, "target": 233, "value": 2}, {"source": 64, "target": 233, "value": 2}, {"source": 236, "target": 233, "value": 6}, {"source": 287, "target": 233, "value": 10}, {"source": 121, "target": 233, "value": 3}, {"source": 262, "target": 233, "value": 3}, {"source": 12, "target": 233, "value": 1}, {"source": 354, "target": 233, "value": 6}, {"source": 237, "target": 233, "value": 1}, {"source": 13, "target": 233, "value": 6}, {"source": 275, "target": 233, "value": 1}, {"source": 14, "target": 233, "value": 4}, {"source": 97, "target": 233, "value": 1}, {"source": 308, "target": 233, "value": 1}, {"source": 169, "target": 233, "value": 1}, {"source": 296, "target": 233, "value": 3}, {"source": 212, "target": 233, "value": 1}, {"source": 100, "target": 233, "value": 3}, {"source": 310, "target": 233, "value": 5}, {"source": 188, "target": 233, "value": 27}, {"source": 36, "target": 233, "value": 6}, {"source": 215, "target": 233, "value": 2}, {"source": 37, "target": 233, "value": 1}, {"source": 291, "target": 27, "value": 1}, {"source": 296, "target": 27, "value": 1}, {"source": 69, "target": 48, "value": 1}, {"source": 36, "target": 48, "value": 1}, {"source": 195, "target": 48, "value": 1}, {"source": 14, "target": 48, "value": 1}, {"source": 197, "target": 48, "value": 1}, {"source": 214, "target": 48, "value": 1}, {"source": 250, "target": 48, "value": 1}, {"source": 25, "target": 48, "value": 1}, {"source": 14, "target": 323, "value": 1}, {"source": 21, "target": 142, "value": 1}, {"source": 239, "target": 142, "value": 1}, {"source": 96, "target": 324, "value": 1}, {"source": 13, "target": 324, "value": 1}, {"source": 251, "target": 50, "value": 1}, {"source": 192, "target": 227, "value": 1}, {"source": 251, "target": 227, "value": 1}, {"source": 239, "target": 235, "value": 1}, {"source": 69, "target": 236, "value": 1}, {"source": 354, "target": 236, "value": 1}, {"source": 21, "target": 236, "value": 1}, {"source": 296, "target": 236, "value": 1}, {"source": 36, "target": 236, "value": 1}, {"source": 287, "target": 236, "value": 1}, {"source": 65, "target": 326, "value": 1}, {"source": 273, "target": 143, "value": 1}, {"source": 265, "target": 167, "value": 2}, {"source": 195, "target": 51, "value": 1}, {"source": 291, "target": 327, "value": 1}, {"source": 47, "target": 293, "value": 1}, {"source": 236, "target": 56, "value": 1}, {"source": 251, "target": 56, "value": 1}, {"source": 25, "target": 56, "value": 1}, {"source": 69, "target": 237, "value": 1}, {"source": 260, "target": 237, "value": 1}, {"source": 100, "target": 237, "value": 1}, {"source": 262, "target": 237, "value": 1}, {"source": 14, "target": 237, "value": 1}, {"source": 289, "target": 145, "value": 1}, {"source": 34, "target": 35, "value": 1}, {"source": 291, "target": 35, "value": 1}, {"source": 296, "target": 147, "value": 1}, {"source": 310, "target": 141, "value": 1}, {"source": 69, "target": 238, "value": 1}, {"source": 195, "target": 238, "value": 2}, {"source": 308, "target": 238, "value": 1}, {"source": 273, "target": 238, "value": 3}, {"source": 188, "target": 238, "value": 1}, {"source": 287, "target": 238, "value": 9}, {"source": 121, "target": 328, "value": 1}, {"source": 300, "target": 52, "value": 1}, {"source": 260, "target": 52, "value": 1}, {"source": 291, "target": 52, "value": 1}, {"source": 356, "target": 52, "value": 1}, {"source": 310, "target": 52, "value": 2}, {"source": 300, "target": 146, "value": 1}, {"source": 129, "target": 61, "value": 1}, {"source": 291, "target": 197, "value": 1}, {"source": 219, "target": 330, "value": 1}, {"source": 296, "target": 331, "value": 1}, {"source": 222, "target": 230, "value": 1}, {"source": 45, "target": 111, "value": 1}, {"source": 291, "target": 240, "value": 1}, {"source": 291, "target": 332, "value": 1}, {"source": 47, "target": 332, "value": 1}, {"source": 310, "target": 241, "value": 1}, {"source": 291, "target": 242, "value": 1}, {"source": 291, "target": 210, "value": 1}, {"source": 47, "target": 106, "value": 1}, {"source": 69, "target": 243, "value": 2}, {"source": 11, "target": 243, "value": 1}, {"source": 291, "target": 243, "value": 1}, {"source": 236, "target": 243, "value": 1}, {"source": 14, "target": 243, "value": 1}, {"source": 296, "target": 244, "value": 1}, {"source": 21, "target": 168, "value": 1}, {"source": 11, "target": 149, "value": 1}, {"source": 121, "target": 283, "value": 1}, {"source": 45, "target": 55, "value": 1}, {"source": 354, "target": 150, "value": 1}, {"source": 251, "target": 150, "value": 1}, {"source": 45, "target": 333, "value": 1}, {"source": 250, "target": 333, "value": 1}, {"source": 197, "target": 333, "value": 1}, {"source": 121, "target": 151, "value": 1}, {"source": 195, "target": 151, "value": 3}, {"source": 139, "target": 151, "value": 1}, {"source": 296, "target": 151, "value": 1}, {"source": 300, "target": 151, "value": 1}, {"source": 239, "target": 151, "value": 1}, {"source": 221, "target": 151, "value": 1}, {"source": 291, "target": 151, "value": 1}, {"source": 69, "target": 89, "value": 1}, {"source": 291, "target": 89, "value": 1}, {"source": 112, "target": 152, "value": 2}, {"source": 243, "target": 152, "value": 6}, {"source": 153, "target": 152, "value": 2}, {"source": 245, "target": 152, "value": 3}, {"source": 151, "target": 152, "value": 1}, {"source": 2, "target": 152, "value": 1}, {"source": 273, "target": 152, "value": 5}, {"source": 221, "target": 152, "value": 2}, {"source": 25, "target": 152, "value": 3}, {"source": 195, "target": 152, "value": 7}, {"source": 64, "target": 152, "value": 3}, {"source": 65, "target": 152, "value": 1}, {"source": 60, "target": 152, "value": 1}, {"source": 52, "target": 152, "value": 2}, {"source": 69, "target": 152, "value": 15}, {"source": 45, "target": 152, "value": 10}, {"source": 139, "target": 152, "value": 2}, {"source": 162, "target": 152, "value": 1}, {"source": 233, "target": 152, "value": 3}, {"source": 118, "target": 152, "value": 1}, {"source": 48, "target": 152, "value": 2}, {"source": 11, "target": 152, "value": 3}, {"source": 260, "target": 152, "value": 1}, {"source": 222, "target": 152, "value": 6}, {"source": 87, "target": 152, "value": 1}, {"source": 350, "target": 152, "value": 1}, {"source": 75, "target": 152, "value": 1}, {"source": 300, "target": 152, "value": 3}, {"source": 120, "target": 152, "value": 3}, {"source": 121, "target": 152, "value": 17}, {"source": 12, "target": 152, "value": 1}, {"source": 237, "target": 152, "value": 2}, {"source": 356, "target": 152, "value": 2}, {"source": 308, "target": 152, "value": 1}, {"source": 169, "target": 152, "value": 1}, {"source": 239, "target": 152, "value": 2}, {"source": 100, "target": 152, "value": 4}, {"source": 188, "target": 152, "value": 12}, {"source": 36, "target": 152, "value": 5}, {"source": 215, "target": 152, "value": 2}, {"source": 37, "target": 152, "value": 3}, {"source": 296, "target": 307, "value": 1}, {"source": 63, "target": 246, "value": 1}, {"source": 162, "target": 246, "value": 1}, {"source": 76, "target": 246, "value": 1}, {"source": 300, "target": 153, "value": 1}, {"source": 65, "target": 153, "value": 1}, {"source": 14, "target": 153, "value": 2}, {"source": 294, "target": 153, "value": 1}, {"source": 310, "target": 153, "value": 1}, {"source": 13, "target": 247, "value": 1}, {"source": 87, "target": 247, "value": 1}, {"source": 14, "target": 58, "value": 1}, {"source": 354, "target": 154, "value": 1}, {"source": 300, "target": 60, "value": 2}, {"source": 121, "target": 60, "value": 3}, {"source": 250, "target": 60, "value": 2}, {"source": 220, "target": 248, "value": 1}, {"source": 184, "target": 155, "value": 1}, {"source": 7, "target": 68, "value": 1}, {"source": 87, "target": 336, "value": 1}, {"source": 36, "target": 156, "value": 1}, {"source": 25, "target": 63, "value": 1}, {"source": 294, "target": 63, "value": 1}, {"source": 251, "target": 157, "value": 1}, {"source": 291, "target": 201, "value": 1}, {"source": 97, "target": 338, "value": 1}, {"source": 273, "target": 101, "value": 1}, {"source": 121, "target": 64, "value": 1}, {"source": 195, "target": 64, "value": 6}, {"source": 291, "target": 64, "value": 1}, {"source": 356, "target": 64, "value": 1}, {"source": 233, "target": 64, "value": 5}, {"source": 169, "target": 64, "value": 1}, {"source": 118, "target": 64, "value": 2}, {"source": 296, "target": 64, "value": 1}, {"source": 183, "target": 64, "value": 1}, {"source": 221, "target": 64, "value": 1}, {"source": 299, "target": 64, "value": 1}, {"source": 69, "target": 65, "value": 1}, {"source": 45, "target": 65, "value": 1}, {"source": 121, "target": 65, "value": 1}, {"source": 354, "target": 65, "value": 1}, {"source": 21, "target": 65, "value": 1}, {"source": 233, "target": 65, "value": 2}, {"source": 100, "target": 65, "value": 1}, {"source": 25, "target": 65, "value": 1}, {"source": 273, "target": 65, "value": 1}, {"source": 188, "target": 65, "value": 1}, {"source": 215, "target": 65, "value": 1}, {"source": 60, "target": 65, "value": 1}, {"source": 45, "target": 279, "value": 1}, {"source": 291, "target": 279, "value": 1}, {"source": 45, "target": 309, "value": 1}, {"source": 139, "target": 309, "value": 1}, {"source": 236, "target": 309, "value": 1}, {"source": 291, "target": 159, "value": 1}, {"source": 26, "target": 294, "value": 1}, {"source": 14, "target": 294, "value": 1}, {"source": 169, "target": 294, "value": 1}, {"source": 60, "target": 294, "value": 1}, {"source": 310, "target": 294, "value": 2}, {"source": 87, "target": 294, "value": 1}, {"source": 25, "target": 294, "value": 1}, {"source": 273, "target": 341, "value": 1}, {"source": 233, "target": 41, "value": 1}, {"source": 291, "target": 66, "value": 1}, {"source": 120, "target": 342, "value": 1}, {"source": 97, "target": 342, "value": 1}, {"source": 296, "target": 342, "value": 1}, {"source": 188, "target": 342, "value": 1}, {"source": 294, "target": 342, "value": 2}, {"source": 37, "target": 342, "value": 1}, {"source": 14, "target": 250, "value": 1}, {"source": 52, "target": 250, "value": 1}, {"source": 197, "target": 250, "value": 1}, {"source": 310, "target": 250, "value": 5}, {"source": 260, "target": 250, "value": 2}, {"source": 36, "target": 250, "value": 1}, {"source": 299, "target": 343, "value": 1}, {"source": 69, "target": 344, "value": 1}, {"source": 45, "target": 344, "value": 3}, {"source": 121, "target": 344, "value": 1}, {"source": 64, "target": 344, "value": 1}, {"source": 233, "target": 344, "value": 1}, {"source": 188, "target": 344, "value": 1}, {"source": 45, "target": 69, "value": 1}, {"source": 18, "target": 69, "value": 1}, {"source": 289, "target": 69, "value": 1}, {"source": 237, "target": 69, "value": 2}, {"source": 291, "target": 69, "value": 2}, {"source": 260, "target": 69, "value": 1}, {"source": 222, "target": 69, "value": 1}, {"source": 37, "target": 69, "value": 1}, {"source": 25, "target": 129, "value": 1}, {"source": 25, "target": 253, "value": 1}, {"source": 291, "target": 71, "value": 1}, {"source": 48, "target": 124, "value": 1}, {"source": 215, "target": 160, "value": 1}, {"source": 112, "target": 254, "value": 1}, {"source": 296, "target": 140, "value": 1}, {"source": 70, "target": 310, "value": 1}, {"source": 97, "target": 310, "value": 1}, {"source": 273, "target": 116, "value": 1}, {"source": 239, "target": 73, "value": 1}, {"source": 112, "target": 162, "value": 1}, {"source": 121, "target": 162, "value": 1}, {"source": 63, "target": 162, "value": 1}, {"source": 233, "target": 162, "value": 1}, {"source": 188, "target": 162, "value": 1}, {"source": 36, "target": 162, "value": 1}, {"source": 52, "target": 346, "value": 1}, {"source": 236, "target": 346, "value": 2}, {"source": 60, "target": 346, "value": 1}, {"source": 294, "target": 346, "value": 1}, {"source": 45, "target": 347, "value": 1}, {"source": 87, "target": 347, "value": 1}, {"source": 291, "target": 257, "value": 1}, {"source": 139, "target": 163, "value": 1}, {"source": 300, "target": 258, "value": 1}, {"source": 87, "target": 258, "value": 1}, {"source": 287, "target": 259, "value": 1}, {"source": 296, "target": 165, "value": 1}, {"source": 69, "target": 260, "value": 4}, {"source": 45, "target": 260, "value": 1}, {"source": 121, "target": 260, "value": 3}, {"source": 195, "target": 260, "value": 1}, {"source": 96, "target": 260, "value": 1}, {"source": 222, "target": 260, "value": 3}, {"source": 310, "target": 260, "value": 1}, {"source": 349, "target": 260, "value": 1}, {"source": 308, "target": 260, "value": 1}, {"source": 52, "target": 260, "value": 2}, {"source": 294, "target": 260, "value": 3}, {"source": 60, "target": 260, "value": 2}, {"source": 273, "target": 260, "value": 1}, {"source": 221, "target": 260, "value": 1}, {"source": 36, "target": 260, "value": 1}, {"source": 287, "target": 260, "value": 1}, {"source": 25, "target": 260, "value": 1}, {"source": 251, "target": 353, "value": 1}, {"source": 36, "target": 300, "value": 1}, {"source": 291, "target": 300, "value": 1}, {"source": 121, "target": 300, "value": 1}, {"source": 151, "target": 300, "value": 1}, {"source": 190, "target": 320, "value": 1}, {"source": 270, "target": 340, "value": 1}, {"source": 195, "target": 261, "value": 1}, {"source": 356, "target": 352, "value": 1}, {"source": 87, "target": 166, "value": 1}, {"source": 291, "target": 262, "value": 1}, {"source": 272, "target": 262, "value": 2}, {"source": 300, "target": 262, "value": 1}, {"source": 296, "target": 262, "value": 1}, {"source": 260, "target": 262, "value": 1}, {"source": 294, "target": 262, "value": 1}, {"source": 121, "target": 76, "value": 1}, {"source": 289, "target": 76, "value": 1}, {"source": 63, "target": 76, "value": 1}, {"source": 139, "target": 76, "value": 1}, {"source": 162, "target": 76, "value": 1}, {"source": 36, "target": 76, "value": 2}, {"source": 69, "target": 354, "value": 3}, {"source": 121, "target": 354, "value": 1}, {"source": 26, "target": 354, "value": 1}, {"source": 195, "target": 354, "value": 1}, {"source": 237, "target": 354, "value": 1}, {"source": 291, "target": 354, "value": 1}, {"source": 54, "target": 354, "value": 1}, {"source": 14, "target": 354, "value": 2}, {"source": 151, "target": 354, "value": 1}, {"source": 300, "target": 354, "value": 1}, {"source": 271, "target": 354, "value": 1}, {"source": 296, "target": 354, "value": 1}, {"source": 212, "target": 354, "value": 1}, {"source": 273, "target": 354, "value": 3}, {"source": 260, "target": 354, "value": 1}, {"source": 36, "target": 354, "value": 2}, {"source": 222, "target": 354, "value": 1}, {"source": 13, "target": 354, "value": 1}, {"source": 291, "target": 263, "value": 1}, {"source": 69, "target": 355, "value": 1}, {"source": 69, "target": 356, "value": 1}, {"source": 221, "target": 74, "value": 1}, {"source": 260, "target": 169, "value": 1}, {"source": 121, "target": 169, "value": 1}, {"source": 139, "target": 169, "value": 1}, {"source": 296, "target": 169, "value": 1}, {"source": 356, "target": 169, "value": 1}, {"source": 65, "target": 169, "value": 1}, {"source": 52, "target": 169, "value": 1}, {"source": 100, "target": 169, "value": 1}, {"source": 188, "target": 169, "value": 1}, {"source": 64, "target": 169, "value": 1}, {"source": 185, "target": 169, "value": 1}, {"source": 221, "target": 169, "value": 1}, {"source": 45, "target": 77, "value": 1}, {"source": 69, "target": 234, "value": 1}, {"source": 291, "target": 127, "value": 1}, {"source": 222, "target": 357, "value": 1}, {"source": 129, "target": 81, "value": 1}, {"source": 11, "target": 84, "value": 1}, {"source": 96, "target": 128, "value": 1}, {"source": 273, "target": 78, "value": 1}, {"source": 310, "target": 359, "value": 1}, {"source": 291, "target": 284, "value": 2}];
+
+	var nodes = [{"name": "stevenmaccall", "title": "stevenmaccall (0/3)"}, {"name": "mopennock", "title": "mopennock (0/1)"}, {"name": "erwinverb", "title": "erwinverb (4/0)"}, {"name": "milchkannen", "title": "milchkannen (0/1)"}, {"name": "jacobsberg", "title": "jacobsberg (0/2)"}, {"name": "lucastheatre", "title": "lucastheatre (4/1)"}, {"name": "andreacallard", "title": "andreacallard (1/0)"}, {"name": "AvalonMediaSys", "title": "AvalonMediaSys (1/8)"}, {"name": "diuhtez", "title": "diuhtez (0/1)"}, {"name": "pjmidtlyng", "title": "pjmidtlyng (0/1)"}, {"name": "metalarchivist", "title": "metalarchivist (0/2)"}, {"name": "CityThatReads", "title": "CityThatReads (14/1)"}, {"name": "jsimpson100", "title": "jsimpson100 (2/0)"}, {"name": "snaile", "title": "snaile (11/29)"}, {"name": "dericed", "title": "dericed (49/6)"}, {"name": "stephestellar", "title": "stephestellar (0/1)"}, {"name": "marksimpkins", "title": "marksimpkins (0/1)"}, {"name": "RichGedney", "title": "RichGedney (0/1)"}, {"name": "Librarians2Pal", "title": "Librarians2Pal (1/0)"}, {"name": "ConnectSavannah", "title": "ConnectSavannah (2/1)"}, {"name": "rinkvlemmix", "title": "rinkvlemmix (0/1)"}, {"name": "DinoEverett", "title": "DinoEverett (10/1)"}, {"name": "fileformatology", "title": "fileformatology (0/1)"}, {"name": "simmstoomey", "title": "simmstoomey (0/1)"}, {"name": "UCLAmias", "title": "UCLAmias (0/1)"}, {"name": "BAVCPreserve", "title": "BAVCPreserve (28/7)"}, {"name": "mistydemeo", "title": "mistydemeo (5/3)"}, {"name": "beyondbroadcast", "title": "beyondbroadcast (0/2)"}, {"name": "WJ_Simmons", "title": "WJ_Simmons (0/1)"}, {"name": "cathyaster", "title": "cathyaster (0/1)"}, {"name": "CarlaArton", "title": "CarlaArton (0/1)"}, {"name": "starsplatter", "title": "starsplatter (0/1)"}, {"name": "aphid23", "title": "aphid23 (0/1)"}, {"name": "therealforsberg", "title": "therealforsberg (2/3)"}, {"name": "trlwagner", "title": "trlwagner (2/4)"}, {"name": "malaventura", "title": "malaventura (0/2)"}, {"name": "AVPreserve", "title": "AVPreserve (48/70)"}, {"name": "PRSRV_UCLA", "title": "PRSRV_UCLA (10/9)"}, {"name": "cnsltnglib", "title": "cnsltnglib (0/1)"}, {"name": "baronronan", "title": "baronronan (0/1)"}, {"name": "HCLEMuseum", "title": "HCLEMuseum (0/4)"}, {"name": "ChiFilmArchives", "title": "ChiFilmArchives (0/1)"}, {"name": "RoxanneShirazi", "title": "RoxanneShirazi (0/2)"}, {"name": "pswartzpk", "title": "pswartzpk (0/1)"}, {"name": "samiegyrl", "title": "samiegyrl (0/4)"}, {"name": "groakus", "title": "groakus (50/12)"}, {"name": "amelish", "title": "amelish (0/1)"}, {"name": "thompowers", "title": "thompowers (5/2)"}, {"name": "benfinoradin", "title": "benfinoradin (7/8)"}, {"name": "williethurlow", "title": "williethurlow (1/0)"}, {"name": "bertramlyons", "title": "bertramlyons (0/1)"}, {"name": "BrettRedacted", "title": "BrettRedacted (0/1)"}, {"name": "ronallo", "title": "ronallo (20/6)"}, {"name": "vsteel", "title": "vsteel (0/1)"}, {"name": "MarshaGGordon", "title": "MarshaGGordon (7/1)"}, {"name": "BarbaraAusten", "title": "BarbaraAusten (0/1)"}, {"name": "NARAMediaLabs", "title": "NARAMediaLabs (0/3)"}, {"name": "BBunny1940", "title": "BBunny1940 (1/0)"}, {"name": "av_morgan", "title": "av_morgan (4/1)"}, {"name": "meganmcshea", "title": "meganmcshea (0/1)"}, {"name": "k_grons", "title": "k_grons (24/7)"}, {"name": "MediaFunders", "title": "MediaFunders (0/1)"}, {"name": "noisegrrrl", "title": "noisegrrrl (0/1)"}, {"name": "metacynic", "title": "metacynic (6/2)"}, {"name": "amusedmuse", "title": "amusedmuse (11/21)"}, {"name": "SiscoLJ", "title": "SiscoLJ (7/13)"}, {"name": "cazzerson", "title": "cazzerson (0/1)"}, {"name": "KateMadd", "title": "KateMadd (0/1)"}, {"name": "jwdunn", "title": "jwdunn (0/1)"}, {"name": "ng_yvonne", "title": "ng_yvonne (93/10)"}, {"name": "CLIRDLF", "title": "CLIRDLF (5/0)"}, {"name": "margotnote", "title": "margotnote (0/1)"}, {"name": "witnessorg", "title": "witnessorg (0/1)"}, {"name": "DominiqueVanpee", "title": "DominiqueVanpee (0/1)"}, {"name": "mmlaney", "title": "mmlaney (0/1)"}, {"name": "ArchivesSarah", "title": "ArchivesSarah (1/0)"}, {"name": "IasArchive", "title": "IasArchive (2/7)"}, {"name": "pokarlsson1", "title": "pokarlsson1 (0/1)"}, {"name": "mchawk", "title": "mchawk (0/1)"}, {"name": "Fairarchives", "title": "Fairarchives (0/1)"}, {"name": "AMIAEduComm", "title": "AMIAEduComm (0/7)"}, {"name": "VinceDaily", "title": "VinceDaily (0/1)"}, {"name": "feefifofannah", "title": "feefifofannah (2/1)"}, {"name": "DrCETI", "title": "DrCETI (0/1)"}, {"name": "ancestryjourney", "title": "ancestryjourney (0/1)"}, {"name": "raamatuid", "title": "raamatuid (0/1)"}, {"name": "kcariani", "title": "kcariani (0/14)"}, {"name": "taylormcbride", "title": "taylormcbride (15/2)"}, {"name": "prtycleverfilms", "title": "prtycleverfilms (0/1)"}, {"name": "nrvscrcts", "title": "nrvscrcts (0/2)"}, {"name": "SierraAndrea", "title": "SierraAndrea (0/4)"}, {"name": "jeffreyjclarke", "title": "jeffreyjclarke (0/1)"}, {"name": "MidwestMMaven", "title": "MidwestMMaven (0/1)"}, {"name": "jodify", "title": "jodify (0/1)"}, {"name": "DennisKoch10", "title": "DennisKoch10 (0/1)"}, {"name": "OWSArchives", "title": "OWSArchives (0/2)"}, {"name": "captain_maybe", "title": "captain_maybe (6/18)"}, {"name": "treberney", "title": "treberney (10/14)"}, {"name": "PuckBuddys", "title": "PuckBuddys (0/1)"}, {"name": "MrPaulDuane", "title": "MrPaulDuane (0/1)"}, {"name": "AVPSeth", "title": "AVPSeth (20/16)"}, {"name": "TyleKurner", "title": "TyleKurner (0/1)"}, {"name": "KineArtefacts", "title": "KineArtefacts (0/3)"}, {"name": "clivegulch", "title": "clivegulch (0/1)"}, {"name": "crawford_media", "title": "crawford_media (0/1)"}, {"name": "ZachMelzer", "title": "ZachMelzer (0/1)"}, {"name": "GlobeIdeas", "title": "GlobeIdeas (0/1)"}, {"name": "jefferylambert", "title": "jefferylambert (0/4)"}, {"name": "dcpunkarchive", "title": "dcpunkarchive (0/1)"}, {"name": "jeffubois", "title": "jeffubois (0/1)"}, {"name": "Flicktion", "title": "Flicktion (0/2)"}, {"name": "EAFilmArchive", "title": "EAFilmArchive (0/1)"}, {"name": "archivematica", "title": "archivematica (8/0)"}, {"name": "AlexandraAlisa", "title": "AlexandraAlisa (0/1)"}, {"name": "the_hoyk", "title": "the_hoyk (0/2)"}, {"name": "bregt_lameris", "title": "bregt_lameris (0/1)"}, {"name": "FilmAdvocacy", "title": "FilmAdvocacy (3/1)"}, {"name": "Just_Mckinney", "title": "Just_Mckinney (0/2)"}, {"name": "UofSCMIRC", "title": "UofSCMIRC (4/4)"}, {"name": "rita_vanduinen", "title": "rita_vanduinen (0/1)"}, {"name": "super_kmac", "title": "super_kmac (5/0)"}, {"name": "shirapeltzman", "title": "shirapeltzman (59/23)"}, {"name": "MaggieToussaint", "title": "MaggieToussaint (0/1)"}, {"name": "documentarysite", "title": "documentarysite (0/1)"}, {"name": "MediaArea_Net", "title": "MediaArea_Net (0/1)"}, {"name": "alisonkgerber", "title": "alisonkgerber (0/1)"}, {"name": "haleynaugle", "title": "haleynaugle (0/1)"}, {"name": "jimgroom", "title": "jimgroom (0/1)"}, {"name": "barnlib", "title": "barnlib (0/1)"}, {"name": "BAVC", "title": "BAVC (4/1)"}, {"name": "Phallice", "title": "Phallice (0/2)"}, {"name": "neo4j", "title": "neo4j (0/1)"}, {"name": "AdiatJunaid", "title": "AdiatJunaid (0/1)"}, {"name": "jy_kim29", "title": "jy_kim29 (0/3)"}, {"name": "Mitzkahdrinnen", "title": "Mitzkahdrinnen (0/1)"}, {"name": "816day", "title": "816day (0/6)"}, {"name": "danielleganza", "title": "danielleganza (0/1)"}, {"name": "Orphan_Films", "title": "Orphan_Films (0/3)"}, {"name": "The_BFOOL", "title": "The_BFOOL (2/1)"}, {"name": "jackbrighton", "title": "jackbrighton (23/19)"}, {"name": "homemoviedayla", "title": "homemoviedayla (0/1)"}, {"name": "cm_harlow", "title": "cm_harlow (0/1)"}, {"name": "MattSoar", "title": "MattSoar (0/2)"}, {"name": "lauriepetrou", "title": "lauriepetrou (0/1)"}, {"name": "rlfrick", "title": "rlfrick (1/0)"}, {"name": "GeorgiaHistory", "title": "GeorgiaHistory (0/1)"}, {"name": "emilstjernholm", "title": "emilstjernholm (0/1)"}, {"name": "museum_distress", "title": "museum_distress (0/1)"}, {"name": "HyattSavannah", "title": "HyattSavannah (1/2)"}, {"name": "lilabirdie", "title": "lilabirdie (0/1)"}, {"name": "Brecht_declercq", "title": "Brecht_declercq (0/2)"}, {"name": "b_olgado", "title": "b_olgado (14/10)"}, {"name": "archivesmatter", "title": "archivesmatter (1/144)"}, {"name": "therealpbcore", "title": "therealpbcore (6/6)"}, {"name": "yvesnie", "title": "yvesnie (0/1)"}, {"name": "Chris_Hackett", "title": "Chris_Hackett (0/1)"}, {"name": "_CassieElise", "title": "_CassieElise (0/1)"}, {"name": "bufvc", "title": "bufvc (0/1)"}, {"name": "peglarr", "title": "peglarr (1/0)"}, {"name": "JordantheCrab", "title": "JordantheCrab (0/1)"}, {"name": "PSMHopkins", "title": "PSMHopkins (0/1)"}, {"name": "MTIFilm", "title": "MTIFilm (1/0)"}, {"name": "stonerhym", "title": "stonerhym (6/6)"}, {"name": "kreynen", "title": "kreynen (0/1)"}, {"name": "mcwumbly", "title": "mcwumbly (0/1)"}, {"name": "dwswan", "title": "dwswan (0/1)"}, {"name": "MadFilmForum", "title": "MadFilmForum (0/1)"}, {"name": "pstalhut", "title": "pstalhut (0/2)"}, {"name": "nyarchivist", "title": "nyarchivist (0/1)"}, {"name": "amarchivepub", "title": "amarchivepub (7/12)"}, {"name": "paige_roberts", "title": "paige_roberts (0/1)"}, {"name": "jenniferpete", "title": "jenniferpete (0/1)"}, {"name": "PrincesTT1", "title": "PrincesTT1 (0/1)"}, {"name": "bibliotechy", "title": "bibliotechy (0/1)"}, {"name": "ubiquity75", "title": "ubiquity75 (0/1)"}, {"name": "LOCLODE", "title": "LOCLODE (0/1)"}, {"name": "liber_amoris", "title": "liber_amoris (0/1)"}, {"name": "thedan_morris", "title": "thedan_morris (0/1)"}, {"name": "bobbylsmiley", "title": "bobbylsmiley (0/1)"}, {"name": "leoappleton", "title": "leoappleton (0/1)"}, {"name": "lottebelice", "title": "lottebelice (0/1)"}, {"name": "ReninaWrites", "title": "ReninaWrites (0/1)"}, {"name": "andrewjbtw", "title": "andrewjbtw (0/1)"}, {"name": "amymemnon", "title": "amymemnon (1/0)"}, {"name": "metacirque", "title": "metacirque (4/5)"}, {"name": "EmilyHalevy", "title": "EmilyHalevy (4/1)"}, {"name": "ColleenBarrett1", "title": "ColleenBarrett1 (0/1)"}, {"name": "gilmarsdasilva", "title": "gilmarsdasilva (0/1)"}, {"name": "MediaCommons_TO", "title": "MediaCommons_TO (61/22)"}, {"name": "NedSparks", "title": "NedSparks (0/1)"}, {"name": "ScreenSlate", "title": "ScreenSlate (6/3)"}, {"name": "vampyresqvid", "title": "vampyresqvid (2/1)"}, {"name": "jsamaudio", "title": "jsamaudio (2/2)"}, {"name": "pixels_per_inch", "title": "pixels_per_inch (2/2)"}, {"name": "kaappiah", "title": "kaappiah (0/3)"}, {"name": "DeusExCinema", "title": "DeusExCinema (74/7)"}, {"name": "rjc_archives", "title": "rjc_archives (0/1)"}, {"name": "jklax", "title": "jklax (11/1)"}, {"name": "incite_online", "title": "incite_online (0/1)"}, {"name": "RBMSinfo", "title": "RBMSinfo (0/8)"}, {"name": "aylewis", "title": "aylewis (0/3)"}, {"name": "complexfields", "title": "complexfields (0/1)"}, {"name": "CoatesBrendan", "title": "CoatesBrendan (0/1)"}, {"name": "CLIRnews", "title": "CLIRnews (0/1)"}, {"name": "somebadideas", "title": "somebadideas (0/1)"}, {"name": "FaberSilents", "title": "FaberSilents (0/1)"}, {"name": "pedrojuanvidal", "title": "pedrojuanvidal (0/1)"}, {"name": "atHuff", "title": "atHuff (0/1)"}, {"name": "innistownhall", "title": "innistownhall (0/3)"}, {"name": "stefarchivist", "title": "stefarchivist (0/2)"}, {"name": "ReelingTheReal", "title": "ReelingTheReal (0/1)"}, {"name": "linkedjazz", "title": "linkedjazz (0/1)"}, {"name": "AVGeeks", "title": "AVGeeks (3/2)"}, {"name": "wildbookchase", "title": "wildbookchase (0/1)"}, {"name": "joshatavps", "title": "joshatavps (2/0)"}, {"name": "CaseyEDavis1", "title": "CaseyEDavis1 (10/28)"}, {"name": "jharpoolgrimes", "title": "jharpoolgrimes (0/2)"}, {"name": "16mmlostfound", "title": "16mmlostfound (1/0)"}, {"name": "PipLaurenson", "title": "PipLaurenson (0/3)"}, {"name": "UCLAFTVArchive", "title": "UCLAFTVArchive (7/0)"}, {"name": "TMD", "title": "TMD (1/0)"}, {"name": "rhfraim", "title": "rhfraim (21/3)"}, {"name": "laurensx", "title": "laurensx (33/20)"}, {"name": "actarc", "title": "actarc (0/4)"}, {"name": "angiexem", "title": "angiexem (0/1)"}, {"name": "savhga123", "title": "savhga123 (0/2)"}, {"name": "k_darnall", "title": "k_darnall (0/1)"}, {"name": "karentoittoit", "title": "karentoittoit (0/2)"}, {"name": "brendanl79", "title": "brendanl79 (0/1)"}, {"name": "VanArchives", "title": "VanArchives (0/6)"}, {"name": "Mrs_K", "title": "Mrs_K (0/1)"}, {"name": "jessewente", "title": "jessewente (0/1)"}, {"name": "cassieschmitt", "title": "cassieschmitt (0/1)"}, {"name": "Sinaphile", "title": "Sinaphile (34/207)"}, {"name": "visionOntv", "title": "visionOntv (0/1)"}, {"name": "laroyo", "title": "laroyo (0/1)"}, {"name": "iulmia", "title": "iulmia (20/6)"}, {"name": "ponymeat", "title": "ponymeat (11/5)"}, {"name": "jasmynrc", "title": "jasmynrc (0/17)"}, {"name": "johanoomen", "title": "johanoomen (14/0)"}, {"name": "xheatherfox", "title": "xheatherfox (0/1)"}, {"name": "GJvanBussel", "title": "GJvanBussel (0/1)"}, {"name": "actuallyawful", "title": "actuallyawful (0/1)"}, {"name": "gracelile", "title": "gracelile (8/6)"}, {"name": "fdaallday", "title": "fdaallday (0/1)"}, {"name": "wgbharchives", "title": "wgbharchives (9/13)"}, {"name": "Goddeykusi", "title": "Goddeykusi (0/3)"}, {"name": "htwcentral", "title": "htwcentral (0/2)"}, {"name": "crazyintx", "title": "crazyintx (0/1)"}, {"name": "soundarchive", "title": "soundarchive (0/1)"}, {"name": "e_piil", "title": "e_piil (18/11)"}, {"name": "EUscreen", "title": "EUscreen (14/0)"}, {"name": "Kristydixie", "title": "Kristydixie (0/1)"}, {"name": "fredherrera", "title": "fredherrera (0/1)"}, {"name": "djjuhasz", "title": "djjuhasz (0/1)"}, {"name": "LJ_French", "title": "LJ_French (0/1)"}, {"name": "eastern_branch", "title": "eastern_branch (0/2)"}, {"name": "irsocal", "title": "irsocal (0/1)"}, {"name": "VHSvanguard", "title": "VHSvanguard (0/2)"}, {"name": "profrichmond", "title": "profrichmond (0/1)"}, {"name": "ablwr", "title": "ablwr (26/28)"}, {"name": "Cinemartyn", "title": "Cinemartyn (0/1)"}, {"name": "brittanclaire", "title": "brittanclaire (9/7)"}, {"name": "meghansitar", "title": "meghansitar (0/1)"}, {"name": "Major_Laura", "title": "Major_Laura (1/0)"}, {"name": "EVSEquipment", "title": "EVSEquipment (2/0)"}, {"name": "KaraMcLean", "title": "KaraMcLean (0/1)"}, {"name": "FilmFracture", "title": "FilmFracture (0/1)"}, {"name": "tammiyk", "title": "tammiyk (0/1)"}, {"name": "MuseumsCouncil", "title": "MuseumsCouncil (0/1)"}, {"name": "flickeralley", "title": "flickeralley (1/0)"}, {"name": "villereal", "title": "villereal (2/2)"}, {"name": "MrsMeredithR", "title": "MrsMeredithR (2/0)"}, {"name": "snowdenbecker", "title": "snowdenbecker (83/23)"}, {"name": "mymackie", "title": "mymackie (0/1)"}, {"name": "AMIApolicy", "title": "AMIApolicy (1/0)"}, {"name": "MeganPrelinger", "title": "MeganPrelinger (0/1)"}, {"name": "adr", "title": "adr (0/3)"}, {"name": "LostDominion", "title": "LostDominion (0/1)"}, {"name": "bitjar", "title": "bitjar (0/2)"}, {"name": "SciTechCurator", "title": "SciTechCurator (0/3)"}, {"name": "rufusderham", "title": "rufusderham (0/3)"}, {"name": "sarahreidell", "title": "sarahreidell (0/1)"}, {"name": "maxisreading", "title": "maxisreading (0/1)"}, {"name": "brendanypk", "title": "brendanypk (0/2)"}, {"name": "L1st0rt1", "title": "L1st0rt1 (0/1)"}, {"name": "JoelSchlemowitz", "title": "JoelSchlemowitz (0/1)"}, {"name": "AMIAatNYU", "title": "AMIAatNYU (50/48)"}, {"name": "ArgyleArchivist", "title": "ArgyleArchivist (0/1)"}, {"name": "AMIAnet", "title": "AMIAnet (17/7)"}, {"name": "lluisbusse", "title": "lluisbusse (0/1)"}, {"name": "footage", "title": "footage (102/8)"}, {"name": "e_padd", "title": "e_padd (0/1)"}, {"name": "fearCharna", "title": "fearCharna (0/1)"}, {"name": "cristalyze", "title": "cristalyze (16/8)"}, {"name": "glasneronfilm", "title": "glasneronfilm (0/1)"}, {"name": "AV_DiscoTech", "title": "AV_DiscoTech (33/12)"}, {"name": "lukemckernan", "title": "lukemckernan (0/1)"}, {"name": "activitystory", "title": "activitystory (0/2)"}, {"name": "Kodak_ShootFilm", "title": "Kodak_ShootFilm (7/0)"}, {"name": "kvanmalssen", "title": "kvanmalssen (38/4)"}, {"name": "KMeijerKline", "title": "KMeijerKline (0/1)"}, {"name": "LissaDaKissa", "title": "LissaDaKissa (0/1)"}, {"name": "jmjafrx", "title": "jmjafrx (0/1)"}, {"name": "DavidUnderdown9", "title": "DavidUnderdown9 (0/1)"}, {"name": "herodotusjr", "title": "herodotusjr (0/3)"}, {"name": "SamanthaOddi", "title": "SamanthaOddi (0/1)"}, {"name": "JuniorTidal", "title": "JuniorTidal (0/1)"}, {"name": "DaleLore", "title": "DaleLore (7/38)"}, {"name": "eabenoit", "title": "eabenoit (0/3)"}, {"name": "TessaFallon", "title": "TessaFallon (37/2)"}, {"name": "tosilentfilm", "title": "tosilentfilm (0/7)"}, {"name": "bolie", "title": "bolie (0/11)"}, {"name": "dmacaul", "title": "dmacaul (0/1)"}, {"name": "eu_sounds", "title": "eu_sounds (0/1)"}, {"name": "Salticidae", "title": "Salticidae (0/2)"}, {"name": "xtopher1974", "title": "xtopher1974 (0/1)"}, {"name": "theangrymick", "title": "theangrymick (0/1)"}, {"name": "Outfest", "title": "Outfest (0/2)"}, {"name": "petralundy", "title": "petralundy (0/1)"}, {"name": "brentchesanek", "title": "brentchesanek (0/1)"}, {"name": "anjacks0n", "title": "anjacks0n (0/2)"}, {"name": "worldswrstghost", "title": "worldswrstghost (0/1)"}, {"name": "obencoder", "title": "obencoder (0/1)"}, {"name": "susanetheridge", "title": "susanetheridge (4/2)"}, {"name": "chelsea_unfun", "title": "chelsea_unfun (0/1)"}, {"name": "LobstoraPgh", "title": "LobstoraPgh (0/1)"}, {"name": "mimbale", "title": "mimbale (0/1)"}, {"name": "hobbs_tp", "title": "hobbs_tp (0/1)"}, {"name": "Unseen_Worlds", "title": "Unseen_Worlds (0/1)"}, {"name": "cinemariasf", "title": "cinemariasf (0/1)"}, {"name": "blaughner", "title": "blaughner (0/1)"}, {"name": "veilletteTO", "title": "veilletteTO (0/2)"}, {"name": "PeterOleksik", "title": "PeterOleksik (0/3)"}, {"name": "beautybell12", "title": "beautybell12 (0/1)"}, {"name": "EUfilmheritage", "title": "EUfilmheritage (0/1)"}, {"name": "tangoldman", "title": "tangoldman (0/1)"}, {"name": "beet_keeper", "title": "beet_keeper (0/1)"}, {"name": "painsme2say", "title": "painsme2say (0/1)"}, {"name": "NDHA_NZ", "title": "NDHA_NZ (0/1)"}, {"name": "enjoythefilmatl", "title": "enjoythefilmatl (0/1)"}, {"name": "egglasses", "title": "egglasses (0/1)"}, {"name": "CAVPP", "title": "CAVPP (0/7)"}, {"name": "COOLRETRO72", "title": "COOLRETRO72 (0/1)"}, {"name": "lynnemthomas", "title": "lynnemthomas (0/8)"}, {"name": "arikeoke", "title": "arikeoke (0/4)"}, {"name": "secret_shorts", "title": "secret_shorts (1/5)"}, {"name": "sally_j", "title": "sally_j (0/2)"}, {"name": "MarieLascu", "title": "MarieLascu (3/0)"}, {"name": "suebeeinaz", "title": "suebeeinaz (1/0)"}, {"name": "accesstomemory", "title": "accesstomemory (1/2)"}, {"name": "thefiresister", "title": "thefiresister (0/2)"}, {"name": "talya_cooper", "title": "talya_cooper (0/1)"}, {"name": "iasa_web", "title": "iasa_web (0/1)"}, {"name": "RetoKromer", "title": "RetoKromer (22/24)"}, {"name": "CarolineFrick", "title": "CarolineFrick (0/1)"}, {"name": "mellydollred", "title": "mellydollred (16/1)"}, {"name": "narrative", "title": "narrative (0/1)"}, {"name": "filmefatale", "title": "filmefatale (1/0)"}, {"name": "LISNews", "title": "LISNews (0/1)"}];
+	
+	
+	
+	function twitterlink(n) {
+		return "<a href='https://twitter.com/" + n + "'>" + n + "</n>";
+	}
+	
+	function selectlink(n) {
+		return "<a href='javascript:userselect(\"" + n + "\")'>" + n + "</n>";
+	}
+	
+	function listsort(l) {
+		sortl = [];
+		for (var a = 0; a < l.length; a++) {
+			sortl.push(l[a].toLowerCase() + " " + l[a]);
+		}
+		sortl = sortl.sort();
+		for (var a = 0; a < sortl.length; a++) {
+			sortl[a] = sortl[a].split(" ")[1];
+		}
+		return sortl;
+	}
+	
+	function listhtml(l) {
+		l = listsort(l);
+		var html = "<ul>";
+		for (var a = 0; a < l.length; a++) {
+			html += "<li>" + selectlink(l[a]) + "</li>";
+		}
+		html += "</ul>";
+		return html;
+	}
+	
+	function selecthtml(l) {
+		l = listsort(l);
+		html = "<select onchange='userselect(this.value)'>";
+		for (var a = 0; a < l.length; a++) {
+			html += "<option>" + l[a] + "</option>";
+		}
+		html += "</select>";	
+		return html;
+	}
+	
+	function userselect(name) {
+	   	// working with:
+   	//	this:
+   	//	<circle class="" transform="translate(974.0229211897631,951.403518091633)" id="circle_RobertCBinkley" r="6">
+    //     <title>RobertCBinkley (1/1)</title>
+    //  </circle>
+    //  d:
+    //  {"name": "RobertCBinkley", "title": "RobertCBinkley (1/1)"}
+    //  path:
+    //        <path d="M952.2..." marker-end="url(#plain)" in="pabinkley" out="RobertCBinkley" 
+    //			class="link suit out_RobertCBinkley in_pabinkley hlOut"/>
+         
+   		root = d3.select("#circle_" + name);
+   		// show selected user in sidebar
+   		d3.select("#sidebar_user").html(twitterlink(name));
+
+   		
+   		pathsfg = d3.select("#paths-fg");
+   		circlesfg = d3.select("#circles-fg");
+   		textsfg = d3.select("#texts-fg");
+   		paths = d3.select("#paths");
+   		circles = d3.select("#circles");
+   		texts = d3.select("#texts");
+   		
+   		// clear previous selections
+   		d3.selectAll(".hl").classed("hl", false);
+   		d3.selectAll(".hlIn").classed("hlIn", false);
+   		d3.selectAll(".hlOut").classed("hlOut", false);
+   		// put foregrounded paths etc. (if any) back in background
+   		var p = pathsfg.selectAll("path").attr("marker-end", "url(#plain)");
+   		if (p.size() > 0)
+   			d3.select("#paths").each(function() {
+	   			f = this;
+	   			p.each(function() { 
+	   				f.appendChild(this) 
+	   			});
+    		})
+   		var p = circlesfg.selectAll("circle");
+   		if (p.size() > 0)
+   			d3.select("#circles").each(function() {
+	   			f = this;
+	   			p.each(function() { 
+	   				f.appendChild(this) 
+	   			});
+    		})
+   		var p = textsfg.selectAll("g");
+   		if (p.size() > 0)
+   			d3.select("#texts").each(function() {
+	   			f = this;
+	   			p.each(function() { 
+	   				f.appendChild(this) 
+	   			});
+    		})
+   		
+		// highlight current node, paths, branch nodes
+   		root.classed("hl", true);
+   		d3.select("#text_" + name).classed("hl", true);
+   		// highlight paths
+   		var inlist = [];
+   		var outlist = [];
+   		d3.selectAll("path.out_" + name).classed("hlOut", true).attr("marker-end", "url(#out)").each(function(d){
+   			if (d.target.name != name) {
+   				outlist.push(d.target.name);
+   				d3.select("#circle_" + d.target.name).classed("hlIn", true); 
+   				d3.select("#text_" + d.target.name).classed("hlIn", true);
+   			};
+   		});
+   		d3.selectAll("path.in_" + name).classed("hlIn", true).attr("marker-end", "url(#in)").each(function(d){
+   			if (d.source.name != name) {
+   				inlist.push(d.source.name);
+   				d3.select("#circle_" + d.source.name).classed("hlOut", true); 
+   				d3.select("#text_" + d.source.name).classed("hlOut", true)
+   				this["marker-end"] = "url(#out)";
+   			};
+   		});
+		var inlabel = {"retweets": "Retweeted by", "replies": "Replies to this", "mentions": "Mentioned"};
+		var outlabel = {"retweets": "Retweeted", "replies": "Replies from this", "mentions": "Mentioned by"};
+		d3.select("#sidebar_inlist").html("<h3>" + inlabel[mode] + "</h3>" + listhtml(inlist));
+		d3.select("#sidebar_outlist").html("<h3>" + outlabel[mode] + "</h3>" + listhtml(outlist));
+
+		// move path to a different group: based on https://groups.google.com/forum/#!topic/d3-js/KEiqiUPZHUs
+   		var p = paths.selectAll("path.out_" + name +", path.in_" + name);
+   		if (p.size() > 0)
+   			d3.select("#paths-fg").each(function() {
+	   			f = this;
+	   			p.each(function() { 
+	   				f.appendChild(this) 
+	   			});
+    		})
+   		var p = circles.selectAll(".hl, .hlIn, .hlOut");
+   		if (p.size() > 0)
+   			d3.select("#circles-fg").each(function() {
+	   			f = this;
+	   			p.each(function() { 
+	   				f.appendChild(this) 
+	   			});
+    		})
+   		var p = texts.selectAll(".hl, .hlIn, .hlOut");
+   		if (p.size() > 0)
+   			d3.select("#texts-fg").each(function() {
+	   			f = this;
+	   			p.each(function() { 
+	   				f.appendChild(this) 
+	   			});
+    		})
+
+
+	}
+	
+
+// set box size to window size
+var win = window,
+    d = document,
+    e = d.documentElement,
+    g = d.getElementsByTagName('body')[0],
+    w = win.innerWidth || e.clientWidth || g.clientWidth,
+    h = win.innerHeight|| e.clientHeight|| g.clientHeight;
+
+// set sidebar to height of window
+d3.select("#sidebar").style.height = h + 'px'; 
+
+var users = [];
+for (var a = 0; a < nodes.length; a++) {
+	users.push(nodes[a]["name"]);
+}
+
+d3.select("#sidebar_selectdiv").html(selecthtml(users));
+    
+// no, on second thought, make the window really really big
+w = 2000;
+h = 2000;
+
+var force = d3.layout.force()
+    .nodes(d3.values(nodes))
+    .links(links)
+    .size([w, h])
+    .linkDistance(60)
+    .charge(-300)
+    .on("tick", tick)
+    .start();
+
+var svg = d3.select("body").append("svg:svg")
+    .attr("width", w)
+    .attr("height", h);
+
+// Per-type markers, as they don't inherit styles.
+svg.append("svg:defs").selectAll("marker")
+    .data(["plain", "in", "out"])
+  .enter().append("svg:marker")
+    .attr("id", String)
+    .attr("viewBox", "0 -5 10 10")
+    .attr("refX", 15)
+    .attr("refY", -1.5)
+    .attr("markerWidth", 6)
+    .attr("markerHeight", 6)
+    .attr("orient", "auto")
+  .append("svg:path")
+    .attr("d", "M0,-5L10,0L0,5");
+
+var path = svg.append("svg:g")
+	.attr("id", "paths")
+  .selectAll("path")
+    .data(force.links())
+  .enter().append("svg:path")
+    .attr("class", function(d) { return "link " + d.type + " out_" + d.source.name + " in_" + d.target.name; })
+    .attr("out", function(d) { return d.source.name; })
+    .attr("in", function(d) { return d.target.name; })
+    .attr("marker-end", "url(#plain)");
+
+var circle = svg.append("svg:g")
+	.attr("id", "circles")
+	.selectAll("circle")
+    .data(force.nodes())
+  .enter().append("svg:circle")
+    .attr("r", 6)
+    .attr("id", function(d) {return "circle_" + d.name;})
+   .on("click", function(d) {
+		userselect(d.name);
+   		})
+   .call(force.drag);
+
+// tooltips
+ circle.append("title")
+      .text(function(d) { return d.title; });
+
+var text = svg.append("svg:g")
+	.attr("id", "texts")
+	.selectAll("g")
+    .data(force.nodes())
+  .enter().append("svg:g")
+  .attr("id", function(d) {return "text_" + d.name;});
+
+// A copy of the text with a thick white stroke for legibility.
+text.append("svg:text")
+    .attr("x", 8)
+    .attr("y", ".31em")
+    .attr("class", "shad")
+    
+    .text(function(d) { return d.name; });
+
+text.append("svg:text")
+    .attr("x", 8)
+    .attr("y", ".31em")
+    .text(function(d) { return d.name; });
+
+// foreground groups: we move highlighted objects here, to bring them in front of the rest
+var pathsfg = svg.append("svg:g")
+	.attr("id", "paths-fg");
+var circlesfg = svg.append("svg:g")
+	.attr("id", "circles-fg");
+var textsfg = svg.append("svg:g")
+	.attr("id", "texts-fg");
+
+// Use elliptical arc path segments to doubly-encode directionality.
+function tick() {
+  path.attr("d", function(d) {
+    var dx = d.target.x - d.source.x,
+        dy = d.target.y - d.source.y,
+        dr = Math.sqrt(dx * dx + dy * dy);
+    return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
+  });
+
+  circle.attr("transform", function(d) {
+    return "translate(" + d.x + "," + d.y + ")";
+  });
+
+  text.attr("transform", function(d) {
+    return "translate(" + d.x + "," + d.y + ")";
+  });
+}
+//	});
+
+    </script>
+    
+  </body>
+</html>
+

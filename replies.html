@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>twarc Directed Graph of Retweets</title>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <style type="text/css">
+
+div#sidebar {
+	position:fixed;
+	top:0px;
+	left:0px;
+	width: 250px;
+	height:400px;
+	overflow:scroll;
+
+	border: 1px solid black;
+	background: #eee;
+	padding: 5px;
+	}
+
+div#sidebar_lists {
+	font-size: 75%;
+}
+
+div.sidebar_list {
+	width: 50%;
+	float:left;
+}
+
+path.link {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+marker#plain {
+  fill: #666;
+}
+
+marker#in {
+  fill: #44f;
+}
+
+marker#out {
+  fill: #0f0;
+}
+
+path.link.hlOut {
+	stroke: #0f0;
+	stroke-width: 2px;
+}
+path.link.hlIn {
+	stroke: #44f;
+	stroke-width: 2px;
+}
+
+
+circle {
+  fill: #eee;
+  stroke: #333;
+  stroke-width: 1.5px;
+}
+circle.hl {
+	stroke: #f00;
+	fill: #f00;
+}
+circle.hlIn {
+	stroke: #0f0;
+	fill: #cfc;
+}
+circle.hlOut {
+	stroke: #66f;
+	fill: #ccf;
+}
+circle.hlout.hlIn {
+	stroke: #66f;
+	fill: #cfc;
+}
+
+text {
+  font: 10px sans-serif;
+  pointer-events: none;
+}
+
+text.shad {
+  stroke: #fff;
+  stroke-width: 3px;
+  stroke-opacity: .8;
+}
+g.hl text.shad {
+	stroke: #fcc;
+  	stroke-opacity: 1;
+}
+g.hlIn text.shad {
+	stroke: #cfc;
+  	stroke-opacity: 1;
+}
+g.hlOut text.shad {
+	stroke: #ddf;
+  	stroke-opacity: 1;
+}
+
+
+ul { margin: 0; padding: 0; list-style-type: none;}
+    </style>
+  </head>
+  <body>
+  
+    <div id="sidebar">
+    	<div id="sidebar_selectdiv">
+    	</div>
+    	<h2 id="sidebar_user"></h2>
+    	<div id="sidebar_lists">
+	    	<div class="sidebar_list" id="sidebar_inlist"></div>
+    		<div class="sidebar_list" id="sidebar_outlist"></div>
+    	</div
+    </div>
+    
+    
+
+  
+    <script type="text/javascript">
+
+	var mode = "replies";
+	
+	var links = [{"source": 61, "target": 21, "value": 1}, {"source": 0, "target": 73, "value": 1}, {"source": 91, "target": 74, "value": 1}, {"source": 5, "target": 74, "value": 2}, {"source": 70, "target": 26, "value": 2}, {"source": 68, "target": 27, "value": 1}, {"source": 74, "target": 27, "value": 2}, {"source": 5, "target": 27, "value": 2}, {"source": 61, "target": 5, "value": 1}, {"source": 90, "target": 5, "value": 1}, {"source": 5, "target": 5, "value": 1}, {"source": 1, "target": 47, "value": 1}, {"source": 40, "target": 81, "value": 1}, {"source": 48, "target": 81, "value": 1}, {"source": 92, "target": 8, "value": 1}, {"source": 13, "target": 20, "value": 4}, {"source": 10, "target": 20, "value": 1}, {"source": 61, "target": 77, "value": 1}, {"source": 14, "target": 28, "value": 2}, {"source": 57, "target": 78, "value": 7}, {"source": 54, "target": 78, "value": 1}, {"source": 19, "target": 45, "value": 1}, {"source": 43, "target": 50, "value": 2}, {"source": 63, "target": 29, "value": 1}, {"source": 22, "target": 51, "value": 2}, {"source": 28, "target": 14, "value": 1}, {"source": 30, "target": 30, "value": 2}, {"source": 92, "target": 7, "value": 1}, {"source": 59, "target": 94, "value": 1}, {"source": 24, "target": 31, "value": 1}, {"source": 53, "target": 31, "value": 1}, {"source": 70, "target": 31, "value": 1}, {"source": 57, "target": 54, "value": 1}, {"source": 41, "target": 54, "value": 1}, {"source": 54, "target": 54, "value": 1}, {"source": 92, "target": 80, "value": 1}, {"source": 35, "target": 9, "value": 1}, {"source": 41, "target": 9, "value": 2}, {"source": 88, "target": 79, "value": 1}, {"source": 30, "target": 79, "value": 1}, {"source": 19, "target": 79, "value": 1}, {"source": 91, "target": 36, "value": 1}, {"source": 92, "target": 55, "value": 1}, {"source": 20, "target": 82, "value": 1}, {"source": 61, "target": 83, "value": 1}, {"source": 90, "target": 83, "value": 1}, {"source": 41, "target": 83, "value": 1}, {"source": 92, "target": 56, "value": 1}, {"source": 29, "target": 34, "value": 1}, {"source": 61, "target": 84, "value": 1}, {"source": 33, "target": 57, "value": 1}, {"source": 41, "target": 57, "value": 1}, {"source": 54, "target": 57, "value": 1}, {"source": 5, "target": 12, "value": 1}, {"source": 11, "target": 58, "value": 1}, {"source": 46, "target": 59, "value": 1}, {"source": 91, "target": 93, "value": 1}, {"source": 33, "target": 93, "value": 1}, {"source": 19, "target": 60, "value": 1}, {"source": 61, "target": 67, "value": 1}, {"source": 21, "target": 67, "value": 1}, {"source": 41, "target": 35, "value": 1}, {"source": 76, "target": 35, "value": 1}, {"source": 5, "target": 35, "value": 2}, {"source": 88, "target": 42, "value": 1}, {"source": 92, "target": 86, "value": 1}, {"source": 35, "target": 37, "value": 1}, {"source": 41, "target": 37, "value": 2}, {"source": 79, "target": 37, "value": 1}, {"source": 20, "target": 75, "value": 1}, {"source": 92, "target": 87, "value": 1}, {"source": 41, "target": 88, "value": 1}, {"source": 92, "target": 88, "value": 1}, {"source": 2, "target": 2, "value": 1}, {"source": 64, "target": 64, "value": 2}, {"source": 41, "target": 39, "value": 4}, {"source": 16, "target": 39, "value": 1}, {"source": 18, "target": 39, "value": 2}, {"source": 35, "target": 39, "value": 1}, {"source": 3, "target": 39, "value": 1}, {"source": 88, "target": 39, "value": 1}, {"source": 39, "target": 39, "value": 5}, {"source": 92, "target": 89, "value": 1}, {"source": 84, "target": 61, "value": 1}, {"source": 90, "target": 61, "value": 1}, {"source": 80, "target": 61, "value": 1}, {"source": 88, "target": 40, "value": 1}, {"source": 41, "target": 40, "value": 1}, {"source": 20, "target": 41, "value": 1}, {"source": 54, "target": 41, "value": 1}, {"source": 83, "target": 76, "value": 1}, {"source": 6, "target": 15, "value": 1}, {"source": 17, "target": 17, "value": 1}, {"source": 5, "target": 17, "value": 1}, {"source": 85, "target": 52, "value": 1}, {"source": 90, "target": 18, "value": 1}, {"source": 19, "target": 18, "value": 1}, {"source": 5, "target": 65, "value": 1}, {"source": 5, "target": 66, "value": 1}, {"source": 59, "target": 32, "value": 2}, {"source": 90, "target": 32, "value": 1}, {"source": 46, "target": 32, "value": 1}, {"source": 30, "target": 32, "value": 1}, {"source": 57, "target": 44, "value": 1}, {"source": 10, "target": 44, "value": 1}, {"source": 32, "target": 33, "value": 1}, {"source": 30, "target": 33, "value": 1}, {"source": 5, "target": 23, "value": 1}, {"source": 38, "target": 69, "value": 1}, {"source": 69, "target": 69, "value": 1}, {"source": 61, "target": 62, "value": 1}, {"source": 41, "target": 71, "value": 1}, {"source": 49, "target": 4, "value": 1}, {"source": 20, "target": 90, "value": 1}, {"source": 90, "target": 90, "value": 1}, {"source": 33, "target": 90, "value": 1}, {"source": 41, "target": 90, "value": 1}, {"source": 59, "target": 46, "value": 1}, {"source": 18, "target": 46, "value": 2}, {"source": 2, "target": 72, "value": 1}, {"source": 25, "target": 25, "value": 1}];
+
+	var nodes = [{"name": "tammiyk", "title": "tammiyk (1/0)"}, {"name": "liciahurst", "title": "liciahurst (1/0)"}, {"name": "metacirque", "title": "metacirque (2/1)"}, {"name": "feefifofannah", "title": "feefifofannah (1/0)"}, {"name": "filmclubbristol", "title": "filmclubbristol (0/1)"}, {"name": "snowdenbecker", "title": "snowdenbecker (12/3)"}, {"name": "KRGilbertson", "title": "KRGilbertson (1/0)"}, {"name": "SavannahLodging", "title": "SavannahLodging (0/1)"}, {"name": "lucastheatre", "title": "lucastheatre (0/1)"}, {"name": "kcariani", "title": "kcariani (0/3)"}, {"name": "taylormcbride", "title": "taylormcbride (2/0)"}, {"name": "landlibrarian", "title": "landlibrarian (1/0)"}, {"name": "BARDCollege", "title": "BARDCollege (0/1)"}, {"name": "CityThatReads", "title": "CityThatReads (4/0)"}, {"name": "EmilyHalevy", "title": "EmilyHalevy (2/1)"}, {"name": "villereal", "title": "villereal (0/1)"}, {"name": "captain_maybe", "title": "captain_maybe (1/0)"}, {"name": "snaile", "title": "snaile (1/2)"}, {"name": "dericed", "title": "dericed (4/2)"}, {"name": "treberney", "title": "treberney (4/0)"}, {"name": "AV_DiscoTech", "title": "AV_DiscoTech (4/5)"}, {"name": "erwinverb", "title": "erwinverb (1/1)"}, {"name": "grabbin_grain", "title": "grabbin_grain (2/0)"}, {"name": "NEHgov", "title": "NEHgov (0/1)"}, {"name": "HyattConcierge", "title": "HyattConcierge (1/0)"}, {"name": "rcorrao", "title": "rcorrao (1/1)"}, {"name": "AMIAnet", "title": "AMIAnet (0/2)"}, {"name": "DinoEverett", "title": "DinoEverett (0/5)"}, {"name": "crawford_media", "title": "crawford_media (1/2)"}, {"name": "UCLAmias", "title": "UCLAmias (1/1)"}, {"name": "cristalyze", "title": "cristalyze (5/2)"}, {"name": "DeusExCinema", "title": "DeusExCinema (0/3)"}, {"name": "ronallo", "title": "ronallo (1/5)"}, {"name": "AVPSeth", "title": "AVPSeth (3/2)"}, {"name": "Kodak_ShootFilm", "title": "Kodak_ShootFilm (0/1)"}, {"name": "kvanmalssen", "title": "kvanmalssen (3/4)"}, {"name": "UofSCMIRC", "title": "UofSCMIRC (0/1)"}, {"name": "trevorthornton", "title": "trevorthornton (0/4)"}, {"name": "therealforsberg", "title": "therealforsberg (1/0)"}, {"name": "laurensx", "title": "laurensx (5/15)"}, {"name": "super_kmac", "title": "super_kmac (1/2)"}, {"name": "shirapeltzman", "title": "shirapeltzman (16/2)"}, {"name": "travisw_ebooks", "title": "travisw_ebooks (0/1)"}, {"name": "DaleLore", "title": "DaleLore (2/0)"}, {"name": "AVGeeks", "title": "AVGeeks (0/2)"}, {"name": "joshatavps", "title": "joshatavps (0/1)"}, {"name": "CaseyEDavis1", "title": "CaseyEDavis1 (2/3)"}, {"name": "tmorello", "title": "tmorello (0/1)"}, {"name": "BAVC", "title": "BAVC (1/0)"}, {"name": "AMIAMontreal", "title": "AMIAMontreal (1/0)"}, {"name": "rhfraim", "title": "rhfraim (0/2)"}, {"name": "styptical", "title": "styptical (0/2)"}, {"name": "JohnPatLeary", "title": "JohnPatLeary (0/1)"}, {"name": "AMIAatNYU", "title": "AMIAatNYU (1/0)"}, {"name": "jy_kim29", "title": "jy_kim29 (4/3)"}, {"name": "Orphan_Films", "title": "Orphan_Films (0/1)"}, {"name": "VanArchives", "title": "VanArchives (0/1)"}, {"name": "groakus", "title": "groakus (9/3)"}, {"name": "anjacks0n", "title": "anjacks0n (0/1)"}, {"name": "jackbrighton", "title": "jackbrighton (4/1)"}, {"name": "Cornell_Library", "title": "Cornell_Library (0/1)"}, {"name": "Sinaphile", "title": "Sinaphile (7/3)"}, {"name": "benfinoradin", "title": "benfinoradin (0/1)"}, {"name": "susanetheridge", "title": "susanetheridge (1/0)"}, {"name": "iulmia", "title": "iulmia (2/2)"}, {"name": "jasmynrc", "title": "jasmynrc (0/1)"}, {"name": "SiobhanHagan", "title": "SiobhanHagan (0/1)"}, {"name": "johanoomen", "title": "johanoomen (0/2)"}, {"name": "cinembargo", "title": "cinembargo (1/0)"}, {"name": "jklax", "title": "jklax (1/2)"}, {"name": "HyattSavannah", "title": "HyattSavannah (3/0)"}, {"name": "librarycongress", "title": "librarycongress (0/1)"}, {"name": "pilsks", "title": "pilsks (0/1)"}, {"name": "laurie_stories", "title": "laurie_stories (0/1)"}, {"name": "MarshaGGordon", "title": "MarshaGGordon (2/3)"}, {"name": "PeterOleksik", "title": "PeterOleksik (0/1)"}, {"name": "b_olgado", "title": "b_olgado (1/1)"}, {"name": "BBunny1940", "title": "BBunny1940 (0/1)"}, {"name": "archivesmatter", "title": "archivesmatter (0/8)"}, {"name": "k_grons", "title": "k_grons (1/3)"}, {"name": "amusedmuse", "title": "amusedmuse (1/1)"}, {"name": "BAVCPreserve", "title": "BAVCPreserve (0/2)"}, {"name": "CAVPP", "title": "CAVPP (0/1)"}, {"name": "e_piil", "title": "e_piil (1/3)"}, {"name": "ng_yvonne", "title": "ng_yvonne (1/1)"}, {"name": "vze26m98", "title": "vze26m98 (1/0)"}, {"name": "ThePixelFarm", "title": "ThePixelFarm (0/1)"}, {"name": "VisitSavannah", "title": "VisitSavannah (0/1)"}, {"name": "ablwr", "title": "ablwr (4/2)"}, {"name": "accesstomemory", "title": "accesstomemory (0/1)"}, {"name": "AVPreserve", "title": "AVPreserve (6/4)"}, {"name": "RetoKromer", "title": "RetoKromer (3/0)"}, {"name": "AMIApolicy", "title": "AMIApolicy (9/0)"}, {"name": "mellydollred", "title": "mellydollred (0/2)"}, {"name": "amarchivepub", "title": "amarchivepub (0/1)"}];
+	
+	
+	
+	function twitterlink(n) {
+		return "<a href='https://twitter.com/" + n + "'>" + n + "</n>";
+	}
+	
+	function selectlink(n) {
+		return "<a href='javascript:userselect(\"" + n + "\")'>" + n + "</n>";
+	}
+	
+	function listsort(l) {
+		sortl = [];
+		for (var a = 0; a < l.length; a++) {
+			sortl.push(l[a].toLowerCase() + " " + l[a]);
+		}
+		sortl = sortl.sort();
+		for (var a = 0; a < sortl.length; a++) {
+			sortl[a] = sortl[a].split(" ")[1];
+		}
+		return sortl;
+	}
+	
+	function listhtml(l) {
+		l = listsort(l);
+		var html = "<ul>";
+		for (var a = 0; a < l.length; a++) {
+			html += "<li>" + selectlink(l[a]) + "</li>";
+		}
+		html += "</ul>";
+		return html;
+	}
+	
+	function selecthtml(l) {
+		l = listsort(l);
+		html = "<select onchange='userselect(this.value)'>";
+		for (var a = 0; a < l.length; a++) {
+			html += "<option>" + l[a] + "</option>";
+		}
+		html += "</select>";	
+		return html;
+	}
+	
+	function userselect(name) {
+	   	// working with:
+   	//	this:
+   	//	<circle class="" transform="translate(974.0229211897631,951.403518091633)" id="circle_RobertCBinkley" r="6">
+    //     <title>RobertCBinkley (1/1)</title>
+    //  </circle>
+    //  d:
+    //  {"name": "RobertCBinkley", "title": "RobertCBinkley (1/1)"}
+    //  path:
+    //        <path d="M952.2..." marker-end="url(#plain)" in="pabinkley" out="RobertCBinkley" 
+    //			class="link suit out_RobertCBinkley in_pabinkley hlOut"/>
+         
+   		root = d3.select("#circle_" + name);
+   		// show selected user in sidebar
+   		d3.select("#sidebar_user").html(twitterlink(name));
+
+   		
+   		pathsfg = d3.select("#paths-fg");
+   		circlesfg = d3.select("#circles-fg");
+   		textsfg = d3.select("#texts-fg");
+   		paths = d3.select("#paths");
+   		circles = d3.select("#circles");
+   		texts = d3.select("#texts");
+   		
+   		// clear previous selections
+   		d3.selectAll(".hl").classed("hl", false);
+   		d3.selectAll(".hlIn").classed("hlIn", false);
+   		d3.selectAll(".hlOut").classed("hlOut", false);
+   		// put foregrounded paths etc. (if any) back in background
+   		var p = pathsfg.selectAll("path").attr("marker-end", "url(#plain)");
+   		if (p.size() > 0)
+   			d3.select("#paths").each(function() {
+	   			f = this;
+	   			p.each(function() { 
+	   				f.appendChild(this) 
+	   			});
+    		})
+   		var p = circlesfg.selectAll("circle");
+   		if (p.size() > 0)
+   			d3.select("#circles").each(function() {
+	   			f = this;
+	   			p.each(function() { 
+	   				f.appendChild(this) 
+	   			});
+    		})
+   		var p = textsfg.selectAll("g");
+   		if (p.size() > 0)
+   			d3.select("#texts").each(function() {
+	   			f = this;
+	   			p.each(function() { 
+	   				f.appendChild(this) 
+	   			});
+    		})
+   		
+		// highlight current node, paths, branch nodes
+   		root.classed("hl", true);
+   		d3.select("#text_" + name).classed("hl", true);
+   		// highlight paths
+   		var inlist = [];
+   		var outlist = [];
+   		d3.selectAll("path.out_" + name).classed("hlOut", true).attr("marker-end", "url(#out)").each(function(d){
+   			if (d.target.name != name) {
+   				outlist.push(d.target.name);
+   				d3.select("#circle_" + d.target.name).classed("hlIn", true); 
+   				d3.select("#text_" + d.target.name).classed("hlIn", true);
+   			};
+   		});
+   		d3.selectAll("path.in_" + name).classed("hlIn", true).attr("marker-end", "url(#in)").each(function(d){
+   			if (d.source.name != name) {
+   				inlist.push(d.source.name);
+   				d3.select("#circle_" + d.source.name).classed("hlOut", true); 
+   				d3.select("#text_" + d.source.name).classed("hlOut", true)
+   				this["marker-end"] = "url(#out)";
+   			};
+   		});
+		var inlabel = {"retweets": "Retweeted by", "replies": "Replies to this", "mentions": "Mentioned"};
+		var outlabel = {"retweets": "Retweeted", "replies": "Replies from this", "mentions": "Mentioned by"};
+		d3.select("#sidebar_inlist").html("<h3>" + inlabel[mode] + "</h3>" + listhtml(inlist));
+		d3.select("#sidebar_outlist").html("<h3>" + outlabel[mode] + "</h3>" + listhtml(outlist));
+
+		// move path to a different group: based on https://groups.google.com/forum/#!topic/d3-js/KEiqiUPZHUs
+   		var p = paths.selectAll("path.out_" + name +", path.in_" + name);
+   		if (p.size() > 0)
+   			d3.select("#paths-fg").each(function() {
+	   			f = this;
+	   			p.each(function() { 
+	   				f.appendChild(this) 
+	   			});
+    		})
+   		var p = circles.selectAll(".hl, .hlIn, .hlOut");
+   		if (p.size() > 0)
+   			d3.select("#circles-fg").each(function() {
+	   			f = this;
+	   			p.each(function() { 
+	   				f.appendChild(this) 
+	   			});
+    		})
+   		var p = texts.selectAll(".hl, .hlIn, .hlOut");
+   		if (p.size() > 0)
+   			d3.select("#texts-fg").each(function() {
+	   			f = this;
+	   			p.each(function() { 
+	   				f.appendChild(this) 
+	   			});
+    		})
+
+
+	}
+	
+
+// set box size to window size
+var win = window,
+    d = document,
+    e = d.documentElement,
+    g = d.getElementsByTagName('body')[0],
+    w = win.innerWidth || e.clientWidth || g.clientWidth,
+    h = win.innerHeight|| e.clientHeight|| g.clientHeight;
+
+// set sidebar to height of window
+d3.select("#sidebar").style.height = h + 'px'; 
+
+var users = [];
+for (var a = 0; a < nodes.length; a++) {
+	users.push(nodes[a]["name"]);
+}
+
+d3.select("#sidebar_selectdiv").html(selecthtml(users));
+    
+// no, on second thought, make the window really really big
+w = 2000;
+h = 2000;
+
+var force = d3.layout.force()
+    .nodes(d3.values(nodes))
+    .links(links)
+    .size([w, h])
+    .linkDistance(60)
+    .charge(-300)
+    .on("tick", tick)
+    .start();
+
+var svg = d3.select("body").append("svg:svg")
+    .attr("width", w)
+    .attr("height", h);
+
+// Per-type markers, as they don't inherit styles.
+svg.append("svg:defs").selectAll("marker")
+    .data(["plain", "in", "out"])
+  .enter().append("svg:marker")
+    .attr("id", String)
+    .attr("viewBox", "0 -5 10 10")
+    .attr("refX", 15)
+    .attr("refY", -1.5)
+    .attr("markerWidth", 6)
+    .attr("markerHeight", 6)
+    .attr("orient", "auto")
+  .append("svg:path")
+    .attr("d", "M0,-5L10,0L0,5");
+
+var path = svg.append("svg:g")
+	.attr("id", "paths")
+  .selectAll("path")
+    .data(force.links())
+  .enter().append("svg:path")
+    .attr("class", function(d) { return "link " + d.type + " out_" + d.source.name + " in_" + d.target.name; })
+    .attr("out", function(d) { return d.source.name; })
+    .attr("in", function(d) { return d.target.name; })
+    .attr("marker-end", "url(#plain)");
+
+var circle = svg.append("svg:g")
+	.attr("id", "circles")
+	.selectAll("circle")
+    .data(force.nodes())
+  .enter().append("svg:circle")
+    .attr("r", 6)
+    .attr("id", function(d) {return "circle_" + d.name;})
+   .on("click", function(d) {
+		userselect(d.name);
+   		})
+   .call(force.drag);
+
+// tooltips
+ circle.append("title")
+      .text(function(d) { return d.title; });
+
+var text = svg.append("svg:g")
+	.attr("id", "texts")
+	.selectAll("g")
+    .data(force.nodes())
+  .enter().append("svg:g")
+  .attr("id", function(d) {return "text_" + d.name;});
+
+// A copy of the text with a thick white stroke for legibility.
+text.append("svg:text")
+    .attr("x", 8)
+    .attr("y", ".31em")
+    .attr("class", "shad")
+    
+    .text(function(d) { return d.name; });
+
+text.append("svg:text")
+    .attr("x", 8)
+    .attr("y", ".31em")
+    .text(function(d) { return d.name; });
+
+// foreground groups: we move highlighted objects here, to bring them in front of the rest
+var pathsfg = svg.append("svg:g")
+	.attr("id", "paths-fg");
+var circlesfg = svg.append("svg:g")
+	.attr("id", "circles-fg");
+var textsfg = svg.append("svg:g")
+	.attr("id", "texts-fg");
+
+// Use elliptical arc path segments to doubly-encode directionality.
+function tick() {
+  path.attr("d", function(d) {
+    var dx = d.target.x - d.source.x,
+        dy = d.target.y - d.source.y,
+        dr = Math.sqrt(dx * dx + dy * dy);
+    return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
+  });
+
+  circle.attr("transform", function(d) {
+    return "translate(" + d.x + "," + d.y + ")";
+  });
+
+  text.attr("transform", function(d) {
+    return "translate(" + d.x + "," + d.y + ")";
+  });
+}
+//	});
+
+    </script>
+    
+  </body>
+</html>
+

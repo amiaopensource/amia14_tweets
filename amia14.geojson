@@ -1,0 +1,1373 @@
+{
+  "type": "FeatureCollection", 
+  "features": [
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.20741746, 
+          32.13560422
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "David Neary", 
+        "url": "http://twitter.com/DeusExCinema/status/521310384759013378", 
+        "text": "Airport waiting times. Home soon. #MIAP #AMIA14 @ Delta Terminal - Savannah International Airport http://t.co/Ih2YjLzzNT", 
+        "created_at": "Sun Oct 12 14:44:15 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520692326583111680/33J_DZRh_normal.jpeg", 
+        "screen_name": "DeusExCinema"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.08932658, 
+          32.08359168
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "AVPreserve", 
+        "url": "http://twitter.com/AVPreserve/status/521052711488618496", 
+        "text": "A powerhouse team speaking on int'l training efforts @IasArchive, David Walsh, @kvanmalssen, Mona Jimenez,  #amia14 http://t.co/ZInpUpH1qp", 
+        "created_at": "Sat Oct 11 21:40:21 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/287112525/avps_logo_normal.png", 
+        "screen_name": "AVPreserve"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.0918936, 
+          32.08215441
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Siobhan C. Hagan", 
+        "url": "http://twitter.com/AV_DiscoTech/status/521015138066112513", 
+        "text": "Hey, #amia14 : contact me if you are interested in helping to form a local TV task force!!", 
+        "created_at": "Sat Oct 11 19:11:03 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/477768446835298304/iixj0LLA_normal.jpeg", 
+        "screen_name": "AV_DiscoTech"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.0912259, 
+          32.08183154
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "AVPreserve", 
+        "url": "http://twitter.com/AVPreserve/status/521013571996876800", 
+        "text": ".@dericed trying to use ffmpeg to unglue the computer from the lobby floor. #amia14 http://t.co/OKmLN61kSB", 
+        "created_at": "Sat Oct 11 19:04:50 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/287112525/avps_logo_normal.png", 
+        "screen_name": "AVPreserve"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.08917686, 
+          32.07878402
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Eddy Colloton", 
+        "url": "http://twitter.com/EddyColloton/status/521013420783443969", 
+        "text": "Ceiling of the amazing Lucas Theater in Savannah GA. #amia14 @ Lucas Theatre for the Arts http://t.co/dzd82AuYqS", 
+        "created_at": "Sat Oct 11 19:04:14 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/3024294113/c3fe07ab5648a0c0fe6d3df4bd43f1d7_normal.png", 
+        "screen_name": "EddyColloton"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09632621, 
+          32.08651165
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Taylor McBride", 
+        "url": "http://twitter.com/taylormcbride/status/521002919811100672", 
+        "text": "I'm on a boat. @MarieLascu #amia14 #savannah http://t.co/CWYt81qiLr", 
+        "created_at": "Sat Oct 11 18:22:30 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520208939527708672/2CKwhg1U_normal.jpeg", 
+        "screen_name": "taylormcbride"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.0914984, 
+          32.08146831
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Taylor McBride", 
+        "url": "http://twitter.com/taylormcbride/status/520976748390141952", 
+        "text": "Hey #amia14 - anyone heading to SAV early tomorrow morning? I have a 6:30 flight and need a taxi buddy", 
+        "created_at": "Sat Oct 11 16:38:30 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520208939527708672/2CKwhg1U_normal.jpeg", 
+        "screen_name": "taylormcbride"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09089661, 
+          32.08358749
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "AVPreserve", 
+        "url": "http://twitter.com/AVPreserve/status/520954034614988800", 
+        "text": "A huge thanks to @snowdenbecker &amp; @MilestoneFilms for their service on the board. AMIA is better bcuz of you &amp; you will be missed #amia14", 
+        "created_at": "Sat Oct 11 15:08:15 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/287112525/avps_logo_normal.png", 
+        "screen_name": "AVPreserve"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09624399, 
+          32.08463106
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Jason P. Evans Groth", 
+        "url": "http://twitter.com/groakus/status/520948596481732608", 
+        "text": "Vinyl brought up again, but this time in reasonable context - as an interesting access format that shows uniqueness per object. #amia14", 
+        "created_at": "Sat Oct 11 14:46:38 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/320286139/simpsonize_normal.jpg", 
+        "screen_name": "groakus"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09531755, 
+          32.08408966
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Jason P. Evans Groth", 
+        "url": "http://twitter.com/groakus/status/520947306733264898", 
+        "text": "Powers of Ten, the Eames film from 1977, projected in a conference room and it was, as always, magical: http://t.co/C4CdBCfBa2 #amia14", 
+        "created_at": "Sat Oct 11 14:41:31 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/320286139/simpsonize_normal.jpg", 
+        "screen_name": "groakus"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.0915339, 
+          32.08168487
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Taylor McBride", 
+        "url": "http://twitter.com/taylormcbride/status/520944567307485184", 
+        "text": "\"I'd much rather see a film die in a projector than on the shelf.\" - Carolyn Faber #filmadvocate #amia14", 
+        "created_at": "Sat Oct 11 14:30:38 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520208939527708672/2CKwhg1U_normal.jpeg", 
+        "screen_name": "taylormcbride"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09033817, 
+          32.06764311
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "AVPreserve", 
+        "url": "http://twitter.com/AVPreserve/status/520937742327627776", 
+        "text": "Thanks to you, @ronallo for all of your awesome contributions!! So grateful for your presence at #amia14 and #AVhack14 !!", 
+        "created_at": "Sat Oct 11 14:03:30 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/287112525/avps_logo_normal.png", 
+        "screen_name": "AVPreserve"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09087702, 
+          32.08366911
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Jason P. Evans Groth", 
+        "url": "http://twitter.com/groakus/status/520930677215477761", 
+        "text": "NC State has a two year streak of Hack Day winners going. Good job @ronallo ! #amia14", 
+        "created_at": "Sat Oct 11 13:35:26 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/320286139/simpsonize_normal.jpg", 
+        "screen_name": "groakus"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.091378, 
+          32.0818
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Crystal Sanchez", 
+        "url": "http://twitter.com/cristalyze/status/520736702164254720", 
+        "text": "I wonder why there is only one black door on floor 5... #amia14 http://t.co/ZCS6Lfg4WQ", 
+        "created_at": "Sat Oct 11 00:44:39 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/1612575312/IMG_0868_normal.jpg", 
+        "screen_name": "cristalyze"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09157566, 
+          32.08163823
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Eddy Colloton", 
+        "url": "http://twitter.com/EddyColloton/status/520683450194747392", 
+        "text": "3mm film camera! At #amia14  I heard people say \"it's so cute!\" multiple times. @ Hyatt Regency Savannah http://t.co/4LUpFEoVc5", 
+        "created_at": "Fri Oct 10 21:13:03 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/3024294113/c3fe07ab5648a0c0fe6d3df4bd43f1d7_normal.png", 
+        "screen_name": "EddyColloton"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09134903, 
+          32.08195483
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Jason P. Evans Groth", 
+        "url": "http://twitter.com/groakus/status/520663580577107968", 
+        "text": "@AVGeeks is my archive hero. Thanks for the inspiration and talent and knowledge and for being in Raleigh, dude! #amia14", 
+        "created_at": "Fri Oct 10 19:54:05 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/320286139/simpsonize_normal.jpg", 
+        "screen_name": "groakus"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.0911999, 
+          32.08189066
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "AVPreserve", 
+        "url": "http://twitter.com/AVPreserve/status/520659356669726723", 
+        "text": ".@dericed aka standards bodies #amia14", 
+        "created_at": "Fri Oct 10 19:37:18 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/287112525/avps_logo_normal.png", 
+        "screen_name": "AVPreserve"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09136806, 
+          32.08182118
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Jason P. Evans Groth", 
+        "url": "http://twitter.com/groakus/status/520659275820302339", 
+        "text": "@archivesmatter @jy_kim29 ... the image in a familiar way, as if it's theirs. Same can happen with logical copies. #amia14", 
+        "created_at": "Fri Oct 10 19:36:59 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/320286139/simpsonize_normal.jpg", 
+        "screen_name": "groakus"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09135557, 
+          32.08196548
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Jason P. Evans Groth", 
+        "url": "http://twitter.com/groakus/status/520659115446894592", 
+        "text": "@archivesmatter @jy_kim29 ... patron to use tools with which they're familiar - spotlight search, for example - to interact with... #amia14", 
+        "created_at": "Fri Oct 10 19:36:21 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/320286139/simpsonize_normal.jpg", 
+        "screen_name": "groakus"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09173737, 
+          32.08129912
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Jason P. Evans Groth", 
+        "url": "http://twitter.com/groakus/status/520658914724282368", 
+        "text": "@archivesmatter @jy_kim29 We take the image and change the extension to .iso and mount it on the desktop (Mac). This allows the... #amia14", 
+        "created_at": "Fri Oct 10 19:35:33 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/320286139/simpsonize_normal.jpg", 
+        "screen_name": "groakus"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.0896405, 
+          32.08365002
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "AVPreserve", 
+        "url": "http://twitter.com/AVPreserve/status/520658598628962304", 
+        "text": ".@dericed what's your point? That it's not worth funding orgs that maintain information for preservation &amp; access? #amia14", 
+        "created_at": "Fri Oct 10 19:34:17 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/287112525/avps_logo_normal.png", 
+        "screen_name": "AVPreserve"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09418765, 
+          32.0826362
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Elizabeth Peterson", 
+        "url": "http://twitter.com/16mmlostfound/status/520656712500793344", 
+        "text": "Mislabeled, overpriced film for sale at the antiquey junk store down the street. #amia14 http://t.co/OAYUvO0UxN", 
+        "created_at": "Fri Oct 10 19:26:48 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/3686832748/3f5eaf6bfc75b1ef9a4894e0ab6429fd_normal.jpeg", 
+        "screen_name": "16mmlostfound"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09141986, 
+          32.08168682
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Jason P. Evans Groth", 
+        "url": "http://twitter.com/groakus/status/520650631879487488", 
+        "text": "@jy_kim29 @archivesmatter We have donors willing to give access to image. We'll mount it on reading room laptop (and remote too?) #amia14", 
+        "created_at": "Fri Oct 10 19:02:38 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/320286139/simpsonize_normal.jpg", 
+        "screen_name": "groakus"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09131172, 
+          32.0816855
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Esther ZenZele", 
+        "url": "http://twitter.com/EstiiZ/status/520640236359925760", 
+        "text": "Jean Luis speaking about freezer packaging. #amia14 #miap http://t.co/XyeJGDhdA6", 
+        "created_at": "Fri Oct 10 18:21:20 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/2240155274/image_normal.jpg", 
+        "screen_name": "EstiiZ"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09211435, 
+          32.07901838
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Ben Fino-Radin", 
+        "url": "http://twitter.com/benfinoradin/status/520620197288230912", 
+        "text": "#amia14 @ Chive Sea Bar and Lounge http://t.co/agOhBpmuWL", 
+        "created_at": "Fri Oct 10 17:01:42 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/1862197726/ava-bigger_normal.gif", 
+        "screen_name": "benfinoradin"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09145594, 
+          32.08169892
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Elizabeth Peterson", 
+        "url": "http://twitter.com/16mmlostfound/status/520578216860213248", 
+        "text": "The grim prospects for the near future of film. #amia14 http://t.co/2i6kHwNsNu", 
+        "created_at": "Fri Oct 10 14:14:53 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/3686832748/3f5eaf6bfc75b1ef9a4894e0ab6429fd_normal.jpeg", 
+        "screen_name": "16mmlostfound"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09136877, 
+          32.08168146
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Siobhan C. Hagan", 
+        "url": "http://twitter.com/AV_DiscoTech/status/520577494802395137", 
+        "text": "@shirapeltzman: @super_kmac talking  @BAVCPreserve's A/V Artifact Atlas: 80 artifacts described! #amia14", 
+        "created_at": "Fri Oct 10 14:12:01 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/477768446835298304/iixj0LLA_normal.jpeg", 
+        "screen_name": "AV_DiscoTech"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.0913089, 
+          32.081586
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Siobhan C. Hagan", 
+        "url": "http://twitter.com/AV_DiscoTech/status/520574929343766529", 
+        "text": "@CAVPP averages 20 min/file for QC #amia14", 
+        "created_at": "Fri Oct 10 14:01:49 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/477768446835298304/iixj0LLA_normal.jpeg", 
+        "screen_name": "AV_DiscoTech"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.10082896, 
+          32.07884326
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Jason P. Evans Groth", 
+        "url": "http://twitter.com/groakus/status/520573461358735360", 
+        "text": "RT, me, #amia13: Will someone present about the resurgence of cassettes, too? Ppl who buy music buy all formats and have, forever. #amia14", 
+        "created_at": "Fri Oct 10 13:55:59 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/320286139/simpsonize_normal.jpg", 
+        "screen_name": "groakus"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09632739, 
+          32.08474744
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Ben Fino-Radin", 
+        "url": "http://twitter.com/benfinoradin/status/520571180512976896", 
+        "text": "Andrew Oren at #amia14 on the future of film labs and stock: \"you'll all find razor blades under your seats\"", 
+        "created_at": "Fri Oct 10 13:46:55 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/1862197726/ava-bigger_normal.gif", 
+        "screen_name": "benfinoradin"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09140137, 
+          32.08168447
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Elizabeth Peterson", 
+        "url": "http://twitter.com/16mmlostfound/status/520570688675934209", 
+        "text": "Resurgence/popularity of vinyl gives hope to persistence of celluloid film? #amia14", 
+        "created_at": "Fri Oct 10 13:44:58 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/3686832748/3f5eaf6bfc75b1ef9a4894e0ab6429fd_normal.jpeg", 
+        "screen_name": "16mmlostfound"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09110115, 
+          32.08158961
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Elizabeth Peterson", 
+        "url": "http://twitter.com/16mmlostfound/status/520569937736130561", 
+        "text": "Only 20 film labs left in the US, according to Fotokem exec, dang. #amia14", 
+        "created_at": "Fri Oct 10 13:41:59 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/3686832748/3f5eaf6bfc75b1ef9a4894e0ab6429fd_normal.jpeg", 
+        "screen_name": "16mmlostfound"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09188099, 
+          32.08171233
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Siobhan C. Hagan", 
+        "url": "http://twitter.com/AV_DiscoTech/status/520560817633103873", 
+        "text": "\"Degralescence\" of most AV by 2028. #amia14", 
+        "created_at": "Fri Oct 10 13:05:45 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/477768446835298304/iixj0LLA_normal.jpeg", 
+        "screen_name": "AV_DiscoTech"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09196968, 
+          32.081908
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Siobhan C. Hagan", 
+        "url": "http://twitter.com/AV_DiscoTech/status/520556559659585536", 
+        "text": "Scorses video says \"prints\" and I hear \"Prince\". #amia14 #morecoffeeplease", 
+        "created_at": "Fri Oct 10 12:48:49 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/477768446835298304/iixj0LLA_normal.jpeg", 
+        "screen_name": "AV_DiscoTech"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09174657, 
+          32.08168059
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Siobhan C. Hagan", 
+        "url": "http://twitter.com/AV_DiscoTech/status/520554706720931840", 
+        "text": "NEH has received the message that we are at a point of crisis for AV preservation. #amia14", 
+        "created_at": "Fri Oct 10 12:41:28 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/477768446835298304/iixj0LLA_normal.jpeg", 
+        "screen_name": "AV_DiscoTech"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.08917686, 
+          32.07878402
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "David Neary", 
+        "url": "http://twitter.com/DeusExCinema/status/520386877367783424", 
+        "text": "Just chillin' with Tennessee Williams and Frank Lloyd Wright. #AMIA14 @ Lucas Theatre for the Arts http://t.co/pd4XjlqxqE", 
+        "created_at": "Fri Oct 10 01:34:34 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520692326583111680/33J_DZRh_normal.jpeg", 
+        "screen_name": "DeusExCinema"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.0921516, 
+          32.08138717
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Elizabeth Peterson", 
+        "url": "http://twitter.com/16mmlostfound/status/520332479417167872", 
+        "text": "Dear AMIA, can we please have a panel about stock footage, licensing/use fees, fulfillment, rights, etc.? Thank you! #amia14", 
+        "created_at": "Thu Oct 09 21:58:25 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/3686832748/3f5eaf6bfc75b1ef9a4894e0ab6429fd_normal.jpeg", 
+        "screen_name": "16mmlostfound"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09615566, 
+          32.08468563
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Jason P. Evans Groth", 
+        "url": "http://twitter.com/groakus/status/520322019934867456", 
+        "text": "I think Ian MacKaye's talk was a reminder of how much \"real\" archivists CAN'T get done inside \"real\" institutions. DIY or die. #amia14", 
+        "created_at": "Thu Oct 09 21:16:51 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/320286139/simpsonize_normal.jpg", 
+        "screen_name": "groakus"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09537576, 
+          32.08457955
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Jason P. Evans Groth", 
+        "url": "http://twitter.com/groakus/status/520320758464380928", 
+        "text": "I love @AVPreserve Fixity and it is part of our current born digital workflow at NC State. @k_grons pitching it lightning style! #amia14", 
+        "created_at": "Thu Oct 09 21:11:50 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/320286139/simpsonize_normal.jpg", 
+        "screen_name": "groakus"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09125372, 
+          32.08161215
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Taylor McBride", 
+        "url": "http://twitter.com/taylormcbride/status/520300442249490432", 
+        "text": "Has anyone spotted @AVGeeks and the #AMIAbirthdaysombrero today?? #amia14", 
+        "created_at": "Thu Oct 09 19:51:06 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520208939527708672/2CKwhg1U_normal.jpeg", 
+        "screen_name": "taylormcbride"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09136898, 
+          32.08170631
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Taylor McBride", 
+        "url": "http://twitter.com/taylormcbride/status/520300049637445632", 
+        "text": "\"I will always love you\" from the xtracks presentation is providing a soundtrack for the #RAVA panel. It's lovely. #amia14", 
+        "created_at": "Thu Oct 09 19:49:33 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520208939527708672/2CKwhg1U_normal.jpeg", 
+        "screen_name": "taylormcbride"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09157566, 
+          32.08163823
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "David Neary", 
+        "url": "http://twitter.com/DeusExCinema/status/520298170333810688", 
+        "text": "New hotel. New room. Better view. #AMIA14 @ Hyatt Regency Savannah http://t.co/lvpdfXVGPv", 
+        "created_at": "Thu Oct 09 19:42:05 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520692326583111680/33J_DZRh_normal.jpeg", 
+        "screen_name": "DeusExCinema"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09157566, 
+          32.08163823
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "David Neary", 
+        "url": "http://twitter.com/DeusExCinema/status/520291437913849857", 
+        "text": "I am going to archive this in my tummy. #AMIA14 #icecream @ Hyatt Regency Savannah http://t.co/3IAyEcsTwU", 
+        "created_at": "Thu Oct 09 19:15:20 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520692326583111680/33J_DZRh_normal.jpeg", 
+        "screen_name": "DeusExCinema"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.0915476, 
+          32.08212926
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "AVPreserve", 
+        "url": "http://twitter.com/AVPreserve/status/520278690148937729", 
+        "text": ".@snowdenbecker: @benfinoradin demoing MoMA's pretty impressive faceted data repository for time-based media. Niiiiiiiiiice. #amia14 #osdpa", 
+        "created_at": "Thu Oct 09 18:24:40 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/287112525/avps_logo_normal.png", 
+        "screen_name": "AVPreserve"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09160082, 
+          32.08190945
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "AVPreserve", 
+        "url": "http://twitter.com/AVPreserve/status/520276801197584385", 
+        "text": ".@kvanmalssen @benfinoradin &amp; @archivematica talk @Moma 'a digital preservation repository #osdpa #amia14 http://t.co/toS4pkyEZU", 
+        "created_at": "Thu Oct 09 18:17:10 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/287112525/avps_logo_normal.png", 
+        "screen_name": "AVPreserve"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09157691, 
+          32.08140949
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Siobhan C. Hagan", 
+        "url": "http://twitter.com/AV_DiscoTech/status/520246712477028353", 
+        "text": "\"Home Movie Day isn't a day, it's a state of mind\" -Andy Uhrich #amia14 #sgaf", 
+        "created_at": "Thu Oct 09 16:17:36 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/477768446835298304/iixj0LLA_normal.jpeg", 
+        "screen_name": "AV_DiscoTech"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09148205, 
+          32.08190018
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "AVPreserve", 
+        "url": "http://twitter.com/AVPreserve/status/520230208398704641", 
+        "text": "The esteemed @kcariani talking hydra DAM @wgbharchives #amia14 #osdpa http://t.co/QV23GE9QuI", 
+        "created_at": "Thu Oct 09 15:12:01 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/287112525/avps_logo_normal.png", 
+        "screen_name": "AVPreserve"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09157566, 
+          32.08163823
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Emily Halevy", 
+        "url": "http://twitter.com/EmilyHalevy/status/520214994839822338", 
+        "text": "Best keynote ever. Coolest dude. #fugazi #amia14 @ Hyatt Regency Savannah http://t.co/bCceCnXVAp", 
+        "created_at": "Thu Oct 09 14:11:34 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/378800000340644237/60afa3402cc62b838ab95f98b5e8d2f1_normal.jpeg", 
+        "screen_name": "EmilyHalevy"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09576219, 
+          32.0845541
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "AVPreserve", 
+        "url": "http://twitter.com/AVPreserve/status/520213263221809152", 
+        "text": ".@trevorthornton \"if you use open source software you are part of the user community\" #amia14 #osdpa", 
+        "created_at": "Thu Oct 09 14:04:41 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/287112525/avps_logo_normal.png", 
+        "screen_name": "AVPreserve"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09150359, 
+          32.08197738
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "AVPreserve", 
+        "url": "http://twitter.com/AVPreserve/status/520207383591915520", 
+        "text": "Standing room only at the #amia14 #osdpa inaugural session from @trevorthornton &amp; @laurensx on open source tech http://t.co/qJo07Lg07O", 
+        "created_at": "Thu Oct 09 13:41:19 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/287112525/avps_logo_normal.png", 
+        "screen_name": "AVPreserve"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.08957208, 
+          32.0916622
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Taylor McBride", 
+        "url": "http://twitter.com/taylormcbride/status/520204102081740800", 
+        "text": "\"This is how you make stuff NOT trash - you share it.\" - Ian Mackaye on archives and access. Archivists are hard core, too! #AMIA14", 
+        "created_at": "Thu Oct 09 13:28:17 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520208939527708672/2CKwhg1U_normal.jpeg", 
+        "screen_name": "taylormcbride"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09179161, 
+          32.08173073
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Siobhan C. Hagan", 
+        "url": "http://twitter.com/AV_DiscoTech/status/520202194738753536", 
+        "text": "@PeterOleksik Minor Threat umatics in the trash?! #amia14", 
+        "created_at": "Thu Oct 09 13:20:42 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/477768446835298304/iixj0LLA_normal.jpeg", 
+        "screen_name": "AV_DiscoTech"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09090367, 
+          32.08363904
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "AVPreserve", 
+        "url": "http://twitter.com/AVPreserve/status/520192212626579456", 
+        "text": "The one and only Ian MacKaye giving a keynote at #amia14 - \"I am a de facto archivist\" @dischordrecords http://t.co/sVnAurqQn9", 
+        "created_at": "Thu Oct 09 12:41:02 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/287112525/avps_logo_normal.png", 
+        "screen_name": "AVPreserve"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.0918521, 
+          32.08184761
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Siobhan C. Hagan", 
+        "url": "http://twitter.com/AV_DiscoTech/status/520192171832786944", 
+        "text": "Lots of f-bombs already! Ian MacKaye is not surprised that many punks become archivists. #amia14 http://t.co/8xzkklKzbv", 
+        "created_at": "Thu Oct 09 12:40:53 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/477768446835298304/iixj0LLA_normal.jpeg", 
+        "screen_name": "AV_DiscoTech"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09157566, 
+          32.08163823
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Emily Halevy", 
+        "url": "http://twitter.com/EmilyHalevy/status/520191658575810560", 
+        "text": "This is a lot of rock n roll for 9am! #fugazi #amia14 @ Hyatt Regency Savannah http://t.co/PXB7rUoHyH", 
+        "created_at": "Thu Oct 09 12:38:50 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/378800000340644237/60afa3402cc62b838ab95f98b5e8d2f1_normal.jpeg", 
+        "screen_name": "EmilyHalevy"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.08917686, 
+          32.07878402
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Ben Fino-Radin", 
+        "url": "http://twitter.com/benfinoradin/status/520038905870311427", 
+        "text": "#amia14 @ Lucas Theatre for the Arts http://t.co/bIwzzcoBcz", 
+        "created_at": "Thu Oct 09 02:31:51 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/1862197726/ava-bigger_normal.gif", 
+        "screen_name": "benfinoradin"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.0961732, 
+          32.0804012
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Lauren Sorensen", 
+        "url": "http://twitter.com/laurensx/status/519978800176988160", 
+        "text": "How was #AVhack14 for attendees out there? Any suggestions to make it better next year? #amia14", 
+        "created_at": "Wed Oct 08 22:33:01 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/496450542286041089/3R5cZX5__normal.jpeg", 
+        "screen_name": "laurensx"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.08551734, 
+          32.07821127
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Eddy Colloton", 
+        "url": "http://twitter.com/EddyColloton/status/519959301897867264", 
+        "text": "Enjoying the ferry ride to the conference! #amia14 @ Savannah Ga Historic District http://t.co/QBWwYz2u7E", 
+        "created_at": "Wed Oct 08 21:15:32 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/3024294113/c3fe07ab5648a0c0fe6d3df4bd43f1d7_normal.png", 
+        "screen_name": "EddyColloton"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.0967567, 
+          32.07058134
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Taylor McBride", 
+        "url": "http://twitter.com/taylormcbride/status/519936797028384768", 
+        "text": "@AV_DiscoTech @AVPreserve Done and done. #amia14 #caw14 http://t.co/FYTg1Advka", 
+        "created_at": "Wed Oct 08 19:46:07 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520208939527708672/2CKwhg1U_normal.jpeg", 
+        "screen_name": "taylormcbride"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.091095, 
+          32.083199
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Jack Brighton", 
+        "url": "http://twitter.com/jackbrighton/status/519936740061360128", 
+        "text": "Writing a simple front end for #ffmpeg at #avhack14 #amia14. Making things work! http://t.co/wD7ZS4NgYu", 
+        "created_at": "Wed Oct 08 19:45:53 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/460813929308884993/4FLLXQQQ_normal.jpeg", 
+        "screen_name": "jackbrighton"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.08520486, 
+          32.08294285
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "David Neary", 
+        "url": "http://twitter.com/DeusExCinema/status/519926047899660288", 
+        "text": "Room with a sufficient amount of view. #AMIA14 @ The Westin Savannah Harbor Golf Resort &amp; Spa http://t.co/TRKOfoELNc", 
+        "created_at": "Wed Oct 08 19:03:24 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520692326583111680/33J_DZRh_normal.jpeg", 
+        "screen_name": "DeusExCinema"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09157566, 
+          32.08163823
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "David Neary", 
+        "url": "http://twitter.com/DeusExCinema/status/519888727381127168", 
+        "text": "It begins... #AMIA14 @ Hyatt Regency Savannah http://t.co/pLrYUleGOp", 
+        "created_at": "Wed Oct 08 16:35:06 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520692326583111680/33J_DZRh_normal.jpeg", 
+        "screen_name": "DeusExCinema"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09615322, 
+          32.08468526
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Jason P. Evans Groth", 
+        "url": "http://twitter.com/groakus/status/519863224452526080", 
+        "text": "Conference rooms are cold to keep you awake. If you ask to warm a conference room you are RUINING IT FOR EVERYONE. Bring a jacket. #amia14", 
+        "created_at": "Wed Oct 08 14:53:45 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/320286139/simpsonize_normal.jpg", 
+        "screen_name": "groakus"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09139822, 
+          32.08169653
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Jason P. Evans Groth", 
+        "url": "http://twitter.com/groakus/status/519831960857100288", 
+        "text": "Was just referred to as \"room monitor\" but had no idea I was being talked to because that could mean anything at an A/V conference #amia14", 
+        "created_at": "Wed Oct 08 12:49:32 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/320286139/simpsonize_normal.jpg", 
+        "screen_name": "groakus"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09142341, 
+          32.0816346
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Jason P. Evans Groth", 
+        "url": "http://twitter.com/groakus/status/519823067925590016", 
+        "text": "#amia14 already a success based on how loud the jukebox at Pinkie Master's played Thin Lizzy's \"Cowboy Song\" for me last night.", 
+        "created_at": "Wed Oct 08 12:14:11 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/320286139/simpsonize_normal.jpg", 
+        "screen_name": "groakus"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -123.21266628, 
+          44.11932907
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Elizabeth Peterson", 
+        "url": "http://twitter.com/16mmlostfound/status/519815714778406912", 
+        "text": "Epic travel day starts in Eugene, OR and ends in Savannah, GA #amia14", 
+        "created_at": "Wed Oct 08 11:44:58 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/3686832748/3f5eaf6bfc75b1ef9a4894e0ab6429fd_normal.jpeg", 
+        "screen_name": "16mmlostfound"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09149395, 
+          32.0816457
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Taylor McBride", 
+        "url": "http://twitter.com/taylormcbride/status/519592839152295936", 
+        "text": "\"VHS decks are not designed to be repaired, they're designed to be replaced.\" - @bennypmo #amia14", 
+        "created_at": "Tue Oct 07 20:59:21 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520208939527708672/2CKwhg1U_normal.jpeg", 
+        "screen_name": "taylormcbride"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09149395, 
+          32.0816457
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Taylor McBride", 
+        "url": "http://twitter.com/taylormcbride/status/519592442580852737", 
+        "text": "Finishing the day by jamming some decks. @bennypmo #amia14 http://t.co/BdjMWuoT7y", 
+        "created_at": "Tue Oct 07 20:57:46 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520208939527708672/2CKwhg1U_normal.jpeg", 
+        "screen_name": "taylormcbride"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.47430779, 
+          30.75409231
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "AVPreserve", 
+        "url": "http://twitter.com/AVPreserve/status/519592101957226497", 
+        "text": "Getting refreshed &amp; ready for a busy #amia14 with @kvanmalssen @AVPSeth &amp; @k_grons on Cumberland Island http://t.co/9pINzO6rKU", 
+        "created_at": "Tue Oct 07 20:56:25 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/287112525/avps_logo_normal.png", 
+        "screen_name": "AVPreserve"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09138982, 
+          32.0816447
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Taylor McBride", 
+        "url": "http://twitter.com/taylormcbride/status/519575803273551872", 
+        "text": "Hey #AMIA14 - anyone up for some yoga at Savannah Yoga Center tomorrow AM? @AV_DiscoTech and I are heading to the 7AM flow class", 
+        "created_at": "Tue Oct 07 19:51:39 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520208939527708672/2CKwhg1U_normal.jpeg", 
+        "screen_name": "taylormcbride"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -74.0542799, 
+          40.7754316
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "AMIA Students at NYU", 
+        "url": "http://twitter.com/AMIAatNYU/status/519568889655463937", 
+        "text": "Some of us are already on our way to Savannah! See you all there :-) #amia14 #Savannah http://t.co/ifM8EESi8a", 
+        "created_at": "Tue Oct 07 19:24:11 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/510045288409862144/R8-LhKJ2_normal.jpeg", 
+        "screen_name": "AMIAatNYU"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09147147, 
+          32.08169753
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Taylor McBride", 
+        "url": "http://twitter.com/taylormcbride/status/519493842391674880", 
+        "text": "\"Does everyone have their screws loose?\" - @AV_DiscoTech guiding us through u-matic disassembly. #AMIA14", 
+        "created_at": "Tue Oct 07 14:25:58 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520208939527708672/2CKwhg1U_normal.jpeg", 
+        "screen_name": "taylormcbride"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09153678, 
+          32.08160588
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Taylor McBride", 
+        "url": "http://twitter.com/taylormcbride/status/519473647921029120", 
+        "text": "Taking apart #VHS and #umatic during the #AMIA14 #smallgauge workshop http://t.co/flmXW80Dkx", 
+        "created_at": "Tue Oct 07 13:05:43 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520208939527708672/2CKwhg1U_normal.jpeg", 
+        "screen_name": "taylormcbride"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09144884, 
+          32.08162698
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Taylor McBride", 
+        "url": "http://twitter.com/taylormcbride/status/519465294008295424", 
+        "text": "@AVGeeks projecting a film about projecting film. #AMIA14 #filmforever #16mm #AMIAbirthdaysombrero http://t.co/QOYyZHnrWN", 
+        "created_at": "Tue Oct 07 12:32:31 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520208939527708672/2CKwhg1U_normal.jpeg", 
+        "screen_name": "taylormcbride"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09154513, 
+          32.08177877
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Taylor McBride", 
+        "url": "http://twitter.com/taylormcbride/status/519462407777681408", 
+        "text": "Oh, and @AVGeeks is wearing his birthday sombrero. #amia14 #AMIAbirthdaysombrero", 
+        "created_at": "Tue Oct 07 12:21:03 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520208939527708672/2CKwhg1U_normal.jpeg", 
+        "screen_name": "taylormcbride"
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          -81.09146951, 
+          32.08165863
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "name": "Taylor McBride", 
+        "url": "http://twitter.com/taylormcbride/status/519462099550887937", 
+        "text": "Watching a 16mm film about projecting film in our #AMIA14 #smallgauge workshop. Things are getting meta. http://t.co/h8Mt9QZwCE", 
+        "created_at": "Tue Oct 07 12:19:50 +0000 2014", 
+        "profile_image_url": "http://pbs.twimg.com/profile_images/520208939527708672/2CKwhg1U_normal.jpeg", 
+        "screen_name": "taylormcbride"
+      }
+    }
+  ]
+}
